@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Mat-Elektrotechnik GmbH — Elektrofachbetrieb in Germering bei München</title>
+<meta name="description" content="Elektroinstallation, Verteilerbau, Wallbox, Photovoltaik, Blitzschutz, Netzwerktechnik und Anlagenprüfung. Mat-Elektrotechnik GmbH, Germering bei München, seit 2010.">
+
+<!-- ACHTUNG vor dem Livegang: canonical und og:url auf die endgueltige Domain aendern.
+     Solange die Seite auf GitHub Pages liegt, zeigt beides dorthin. Siehe UEBERGABE.md. -->
+<link rel="canonical" href="https://adjukic996-dot.github.io/mat-elektrotechnik/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Mat-Elektrotechnik GmbH">
+<meta property="og:title" content="Mat-Elektrotechnik GmbH — Elektrofachbetrieb in Germering bei München">
+<meta property="og:description" content="Elektroinstallation, Verteilerbau, Wallbox, Photovoltaik, Blitzschutz, Netzwerktechnik und Anlagenprüfung. Seit 2010.">
+<meta property="og:url" content="https://adjukic996-dot.github.io/mat-elektrotechnik/">
+<meta property="og:image" content="https://adjukic996-dot.github.io/mat-elektrotechnik/bilder/og-mat-elektrotechnik.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mat-Elektrotechnik — Elektrotechnik für den Großraum München. Seit 2010.">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23D70036'/><text x='16' y='23' font-family='system-ui,sans-serif' font-size='18' font-weight='600' fill='white' text-anchor='middle'>m</text></svg>">
+
+<link rel="preload" href="fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+/* ===========================================================================
+   MAT Elektrotechnik — Stylesheet
+   Designsystem: abgeleitet von IBM Carbon (Apache-2.0).
+   Alle Werte unveraendert aus DESIGN.md. Abweichungen von Carbon: DESIGN.md 2.1.
+   Schrift: IBM Plex Sans (SIL OFL 1.1), selbst gehostet, latin + latin-ext.
+   =========================================================================== */
+
+/* --- Schrift: Variable Font, Achse wght 100-700, eine Datei je Subset -------- */
+@font-face{
+  font-family:"IBM Plex Sans";
+  font-style:normal;
+  font-weight:100 700;
+  font-display:swap;
+  src:url("fonts/ibm-plex-sans-latin.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"IBM Plex Sans";
+  font-style:normal;
+  font-weight:100 700;
+  font-display:swap;
+  src:url("fonts/ibm-plex-sans-latin-ext.woff2") format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+/* --- Token ------------------------------------------------------------------ */
+:root{
+  /* Farbe: Carbon-Graurampe unveraendert */
+  --text-primary:#161616;
+  --text-secondary:#525252;
+  --text-helper:#6f6f6f;
+  --background:#ffffff;
+  --layer-01:#f4f4f4;
+  --background-inverse:#161616;
+  --border-subtle:#c6c6c6;
+  --border-strong:#8d8d8d;
+  /* Farbe: Signal, MAT-eigen */
+  --signal:#D70036;
+  --signal-hover:#B3002D;
+  --signal-on-dark:#FF4D6E;
+  --signal-wash:#FDF1F4;
+  --support-error:#B3002D;
+  --support-success:#0E6027;
+  --focus:#161616;
+  --focus-inset:#ffffff;
+
+  /* Typografie */
+  --font-sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-display:clamp(2.125rem,1.35rem + 3.3vw,4.25rem);
+  --t-h2:clamp(1.625rem,1.25rem + 1.6vw,2.75rem);
+  --t-h3:clamp(1.1875rem,1.1rem + 0.37vw,1.375rem);
+  --t-lead:clamp(1.125rem,1.07rem + 0.23vw,1.25rem);
+  --t-body:1.0625rem;
+  --t-small:0.9375rem;
+  --t-label:0.8125rem;
+
+  /* Abstand: Carbon spacing-01..13 unveraendert */
+  --s-01:.125rem; --s-02:.25rem; --s-03:.5rem;  --s-04:.75rem;
+  --s-05:1rem;    --s-06:1.5rem; --s-07:2rem;   --s-08:2.5rem;
+  --s-09:3rem;    --s-10:4rem;   --s-11:5rem;   --s-12:6rem;  --s-13:10rem;
+
+  --section-y:clamp(4rem,2.5rem + 6.4vw,8rem);
+  --gutter:clamp(1.25rem,.9rem + 1.5vw,2.5rem);
+  --page-max:72rem;
+  --measure:66ch;
+
+  /* Form */
+  --radius:0;
+
+  /* Bewegung: Carbon unveraendert */
+  --dur-fast-01:70ms;
+  --dur-fast-02:110ms;
+  --dur-mod-01:150ms;
+  --dur-mod-02:240ms;
+  --ease-standard:cubic-bezier(.2,0,.38,.9);
+  --ease-entrance:cubic-bezier(0,0,.38,.9);
+  --ease-exit:cubic-bezier(.2,0,1,.9);
+
+  /* Fokus und Trefferflaechen */
+  --focus-width:2px;
+  --focus-offset:2px;
+  --tap-min:44px;
+  --tap-comfort:48px;
+}
+
+/* --- Grundlagen ------------------------------------------------------------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--font-sans);
+  font-size:var(--t-body);
+  line-height:1.6;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-wrap:break-word;
+}
+img{max-width:100%;height:auto;display:block}
+::selection{background:var(--signal);color:#fff}
+
+/* Fokus: niemals entfernt. Genau der Fehler, den die Bestandsseite macht. */
+:focus-visible{
+  outline:var(--focus-width) solid var(--focus);
+  outline-offset:var(--focus-offset);
+}
+/* Der Ring liegt wegen outline-offset AUSSERHALB des Elements — er muss also
+   gegen die Flaeche DAHINTER kontrastieren, nicht gegen das Element selbst.
+   Deshalb bekommt der rote Button auf weissem Grund KEINEN weissen Ring. */
+.on-dark :focus-visible{
+  outline-color:var(--focus-inset);
+}
+/* Das helle Formularfeld liegt innerhalb der dunklen Sektion — dort gilt
+   wieder der dunkle Ring, sonst waere er weiss auf weiss. */
+.on-dark .form-panel :focus-visible{
+  outline-color:var(--focus);
+}
+
+/* --- Typografie ------------------------------------------------------------- */
+h1,h2,h3{margin:0;text-wrap:balance}
+h1{font-size:var(--t-display);line-height:1.05;font-weight:400;letter-spacing:-.01em}
+h2{font-size:var(--t-h2);line-height:1.15;font-weight:400;letter-spacing:0}
+h3{font-size:var(--t-h3);line-height:1.35;font-weight:600}
+p{margin:0}
+.lead{font-size:var(--t-lead);line-height:1.55}
+.small{font-size:var(--t-small);line-height:1.55}
+.label{
+  font-size:var(--t-label);
+  line-height:1.2;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--text-secondary);
+}
+.on-dark .label{color:var(--border-subtle)}
+.prose{max-width:var(--measure)}
+.stack>*+*{margin-top:var(--s-05)}
+.stack-lg>*+*{margin-top:var(--s-07)}
+
+a{color:inherit;text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{text-decoration-color:var(--signal);text-decoration-thickness:2px}
+.on-dark a:hover{text-decoration-color:var(--signal-on-dark)}
+
+/* --- Sichtbare Luecken: blockieren den Livegang ------------------------------ */
+.fehlt{
+  display:inline-block;
+  background:var(--signal-wash);
+  color:var(--support-error);
+  border-left:3px solid var(--signal);
+  padding:var(--s-02) var(--s-04);
+  font-size:var(--t-small);
+  font-weight:600;
+  line-height:1.4;
+}
+.on-dark .fehlt{background:var(--signal-wash)}
+
+/* --- Layout ----------------------------------------------------------------- */
+.wrap{max-width:var(--page-max);margin-inline:auto;padding-inline:var(--gutter)}
+section{padding-block:var(--section-y)}
+.section-head{margin-bottom:var(--s-09)}
+.section-head>*+*{margin-top:var(--s-05)}
+
+/* --- Sprunglink ------------------------------------------------------------- */
+.skip{
+  position:absolute;left:var(--s-05);top:var(--s-05);
+  transform:translateY(-200%);
+  background:var(--signal);color:#fff;
+  padding:var(--s-04) var(--s-06);
+  text-decoration:none;font-weight:600;
+  z-index:100;
+  transition:transform var(--dur-fast-02) var(--ease-entrance);
+}
+.skip:focus{transform:translateY(0)}
+
+/* --- Kopfzeile -------------------------------------------------------------- */
+.header{
+  position:sticky;top:0;z-index:50;
+  background:var(--background);
+  border-bottom:1px solid var(--border-subtle);
+}
+.header__inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:var(--s-05);
+  min-height:var(--tap-comfort);
+  padding-block:var(--s-04);
+}
+/* Wortmarke: typografischer Platzhalter.
+   [FEHLT: Logo-Originaldatei des Kunden] — ersetzt diesen Block beim Livegang. */
+.wordmark{
+  display:flex;align-items:baseline;gap:var(--s-03);
+  text-decoration:none;
+  padding-block:var(--s-03);          /* bringt die Trefferflaeche auf >=44px */
+  min-height:var(--tap-min);
+}
+.wordmark__mat{font-size:1.5rem;font-weight:600;letter-spacing:-.02em;line-height:1}
+.wordmark__sub{
+  font-size:var(--t-label);font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--signal);
+}
+.header__tel{
+  display:inline-flex;align-items:center;
+  min-height:var(--tap-comfort);
+  padding-inline:var(--s-04);
+  margin-inline-end:calc(var(--s-04) * -1);
+  font-weight:600;color:var(--signal);
+  text-decoration:none;white-space:nowrap;
+  transition:color var(--dur-fast-02) var(--ease-standard);
+}
+.header__tel:hover{color:var(--signal-hover);text-decoration:underline;text-decoration-thickness:2px}
+
+/* --- Schaltflaechen --------------------------------------------------------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:var(--tap-comfort);
+  padding:var(--s-04) var(--s-07);
+  border:1px solid transparent;border-radius:var(--radius);
+  font:inherit;font-weight:600;
+  text-decoration:none;cursor:pointer;
+  transition:background-color var(--dur-fast-02) var(--ease-standard),
+             color var(--dur-fast-02) var(--ease-standard),
+             border-color var(--dur-fast-02) var(--ease-standard);
+}
+.btn--primary{background:var(--signal);color:#fff}
+.btn--primary:hover{background:var(--signal-hover)}
+.btn--secondary{background:transparent;color:var(--text-primary);border-color:var(--text-primary)}
+.btn--secondary:hover{background:var(--text-primary);color:var(--background)}
+.on-dark .btn--secondary{color:var(--background);border-color:var(--background)}
+.on-dark .btn--secondary:hover{background:var(--background);color:var(--text-primary)}
+.btn-row{display:flex;flex-wrap:wrap;gap:var(--s-05)}
+
+/* --- Hero ------------------------------------------------------------------- */
+.hero{padding-block:clamp(3rem,2rem + 5vw,7rem) var(--section-y)}
+.hero__inner{max-width:52rem}
+.hero__inner>*+*{margin-top:var(--s-07)}
+.hero .lead{max-width:var(--measure);color:var(--text-secondary)}
+
+/* Buchstabenflaeche statt Foto. Rein typografisch, kein Fremdbild. */
+.letterband{
+  border-block:1px solid var(--border-subtle);
+  background:var(--layer-01);
+  overflow:hidden;
+  padding-block:var(--s-07);
+}
+.letterband__row{
+  display:flex;gap:var(--s-09);justify-content:center;
+  font-size:clamp(7rem,22vw,16rem);
+  font-weight:600;line-height:.78;letter-spacing:-.04em;
+  color:var(--border-subtle);
+  user-select:none;
+}
+.letterband__row span:nth-child(2){color:var(--signal);opacity:.22}
+
+/* --- Zusagen ---------------------------------------------------------------- */
+.promise{
+  border-left:3px solid var(--signal);
+  padding-left:var(--s-06);
+  background:var(--signal-wash);
+  padding-block:var(--s-06);
+  padding-right:var(--s-06);
+}
+.promise ul{margin:0;padding-left:var(--s-06)}
+.promise li+li{margin-top:var(--s-04)}
+
+/* --- Leistungen: Raster aus Haarlinien, keine Kaesten ----------------------- */
+.grid-rule{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+  gap:1px;
+  background:var(--border-subtle);
+  border:1px solid var(--border-subtle);
+}
+.grid-rule>*{background:var(--background);padding:var(--s-07)}
+.card>*+*{margin-top:var(--s-05)}
+.card__num{color:var(--signal)}
+
+/* --- Ablauf ----------------------------------------------------------------- */
+.steps{list-style:none;margin:0;padding:0;counter-reset:step}
+.steps>li{
+  counter-increment:step;
+  position:relative;
+  padding-left:var(--s-09);
+  padding-bottom:var(--s-08);
+  border-left:1px solid var(--border-subtle);
+}
+.steps>li:last-child{border-left-color:transparent;padding-bottom:0}
+.steps>li::before{
+  content:counter(step);
+  position:absolute;left:0;top:0;
+  transform:translateX(-50%);
+  width:2rem;height:2rem;
+  display:grid;place-items:center;
+  background:var(--signal);color:#fff;
+  font-size:var(--t-small);font-weight:600;line-height:1;
+}
+.steps h3{margin-bottom:var(--s-04)}
+
+/* --- Belege ----------------------------------------------------------------- */
+.proof{border-top:1px solid var(--border-subtle);padding-top:var(--s-06)}
+.proof>*+*{margin-top:var(--s-04)}
+
+/* --- Kontakt (dunkel) ------------------------------------------------------- */
+.on-dark{background:var(--background-inverse);color:var(--background)}
+.contact__grid{display:grid;gap:var(--s-10);grid-template-columns:1fr}
+@media (min-width:60rem){.contact__grid{grid-template-columns:1fr 1fr;gap:var(--s-11)}}
+.contact__direct{list-style:none;margin:0;padding:0}
+.contact__direct li+li{margin-top:var(--s-06)}
+.contact__direct a{
+  display:inline-flex;align-items:center;
+  min-height:var(--tap-min);
+  font-size:var(--t-lead);font-weight:600;
+}
+
+/* Formularfeld-Regel aus DESIGN.md 2.3: Felder stehen auf Weiss, nie auf Grau.
+   border-strong erreicht auf layer-01 nur 3,02:1 — Grenzwert ohne Reserve. */
+.form-panel{background:var(--background);color:var(--text-primary);padding:var(--s-08)}
+.field+.field{margin-top:var(--s-06)}
+.field label{display:block;margin-bottom:var(--s-03)}
+.field input,.field select,.field textarea{
+  width:100%;
+  min-height:var(--tap-comfort);
+  padding:var(--s-04);
+  font:inherit;color:var(--text-primary);
+  background:var(--background);
+  border:1px solid var(--border-strong);
+  border-radius:var(--radius);
+  transition:border-color var(--dur-fast-02) var(--ease-standard);
+}
+.field textarea{min-height:9rem;resize:vertical;line-height:1.6}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:var(--text-primary)}
+.field .hint{display:block;margin-top:var(--s-03);color:var(--text-helper);font-size:var(--t-small)}
+.field .err{
+  display:none;margin-top:var(--s-03);
+  color:var(--support-error);font-size:var(--t-small);font-weight:600;
+}
+.field[data-invalid="true"] input,
+.field[data-invalid="true"] select,
+.field[data-invalid="true"] textarea{border-color:var(--support-error);border-width:2px}
+.field[data-invalid="true"] .err{display:block}
+.req{color:var(--support-error)}
+
+/* Honigtopf: fuer Menschen und Vorleseprogramme unsichtbar, fuer Bots sichtbar */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.status{margin-top:var(--s-06);padding:var(--s-06);border-left:3px solid var(--border-strong)}
+.status[hidden]{display:none}
+.status--ok{border-left-color:var(--support-success);background:var(--layer-01)}
+.status--ok h3{color:var(--support-success)}
+.status--warn{border-left-color:var(--signal);background:var(--signal-wash)}
+.status>*+*{margin-top:var(--s-05)}
+.status textarea{
+  width:100%;min-height:10rem;font:inherit;font-size:var(--t-small);
+  padding:var(--s-04);border:1px solid var(--border-strong);border-radius:var(--radius);
+  background:var(--background);line-height:1.6;
+}
+
+/* --- FAQ: details/summary, funktioniert ohne JavaScript --------------------- */
+.faq{border-top:1px solid var(--border-subtle)}
+.faq details{border-bottom:1px solid var(--border-subtle)}
+.faq summary{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s-06);
+  min-height:var(--tap-comfort);
+  padding-block:var(--s-05);
+  font-size:var(--t-h3);font-weight:600;line-height:1.35;
+  cursor:pointer;list-style:none;
+  transition:color var(--dur-fast-02) var(--ease-standard);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--signal)}
+.faq summary::after{
+  content:"+";
+  flex:0 0 auto;
+  font-size:1.5rem;font-weight:400;line-height:1;color:var(--signal);
+}
+.faq details[open] summary::after{content:"–"}
+.faq .answer{padding-bottom:var(--s-06);max-width:var(--measure)}
+.faq .answer>*+*{margin-top:var(--s-05)}
+
+/* --- Fusszeile -------------------------------------------------------------- */
+.footer{border-top:1px solid var(--border-subtle);padding-block:var(--s-09)}
+.footer__grid{display:grid;gap:var(--s-07);grid-template-columns:1fr}
+@media (min-width:48rem){.footer__grid{grid-template-columns:2fr 1fr 1fr}}
+.footer nav ul{list-style:none;margin:0;padding:0}
+.footer nav li+li{margin-top:var(--s-03)}
+.footer nav a{display:inline-flex;align-items:center;min-height:var(--tap-min)}
+/* Telefon und E-Mail in der Fusszeile sind Handlungen, keine Fliesstext-Links.
+   Sie bekommen deshalb eine volle Trefferflaeche. */
+.footer address a{display:inline-flex;align-items:center;min-height:var(--tap-min)}
+.footer__legal{
+  margin-top:var(--s-09);padding-top:var(--s-06);
+  border-top:1px solid var(--border-subtle);
+  color:var(--text-secondary);
+}
+
+/* --- noscript --------------------------------------------------------------- */
+.noscript{
+  background:var(--signal-wash);
+  border-left:3px solid var(--signal);
+  padding:var(--s-06);
+  margin-bottom:var(--s-07);
+}
+
+/* --- Bewegung zurueckgenommen ---------------------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+}
+
+/* --- Druck ------------------------------------------------------------------ */
+@media print{
+  .header,.skip,.letterband,form,.btn{display:none}
+  body{color:#000;font-size:11pt}
+  .on-dark{background:#fff;color:#000}
+}
+</style>
+</head>
+
+<body id="top">
+
+<a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="header">
+  <div class="wrap header__inner">
+    <!-- [FEHLT: Logo-Originaldatei des Kunden] — bis dahin typografische Wortmarke -->
+    <a class="wordmark" href="#top" aria-label="Mat-Elektrotechnik, zum Seitenanfang">
+      <span class="wordmark__mat">mat</span>
+      <span class="wordmark__sub">Elektrotechnik</span>
+    </a>
+    <a class="header__tel" href="tel:+498923750352">089 23750352</a>
+  </div>
+</header>
+
+<main id="inhalt">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <p class="label">Elektrofachbetrieb · Germering bei München</p>
+      <h1>Elektrotechnik für den Großraum München. Seit 2010.</h1>
+      <p class="lead">
+        Mat-Elektrotechnik ist Ihr Elektrofachbetrieb aus Germering. Von der einzelnen
+        Steckdose bis zur Photovoltaik-Großanlage: Wir planen, bauen und warten
+        Elektroanlagen — mit demselben Team, von Anfang bis Abnahme.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#kontakt">Anfrage senden</a>
+        <a class="btn btn--secondary" href="tel:+498923750352">089 23750352</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="letterband" aria-hidden="true">
+    <div class="letterband__row"><span>m</span><span>a</span><span>t</span></div>
+  </div>
+
+  <!-- ===================== PROBLEM ===================== -->
+  <section id="zusagen">
+    <div class="wrap">
+      <div class="section-head prose">
+        <p class="label">Woran Sie bei uns sind</p>
+        <h2>Sie wissen, wie es sonst läuft.</h2>
+      </div>
+
+      <div class="prose stack-lg">
+        <p>
+          Sie rufen an und erreichen eine Mailbox. Sie bekommen einen Termin in acht
+          Wochen. Jemand kommt, sieht sich die Sache an — und auf das Angebot warten Sie
+          dann noch einmal drei Wochen. Am Ende steht auf der Rechnung mehr, als
+          besprochen war.
+        </p>
+        <p>
+          Elektroarbeiten sind kein Bereich, in dem man das hinnehmen sollte. Eine
+          Verteilung, die vierzig Jahre alt ist, eine Wallbox an einer Leitung, die sie
+          nicht trägt, ein Prüftermin, der seit Jahren überfällig ist — das sind keine
+          Schönheitsfragen.
+        </p>
+
+        <div class="promise">
+          <p><strong>Deshalb sagen wir vorher, woran Sie bei uns sind:</strong></p>
+          <ul>
+            <li>Wir melden uns innerhalb von
+              <span class="fehlt">[FEHLT: Reaktionszeit in Werktagen]</span> auf Ihre Anfrage.</li>
+            <li>Sie bekommen ein schriftliches Angebot mit Festpreis, bevor wir anfangen.</li>
+            <li>Was im Angebot steht, steht auch auf der Rechnung. Mehrarbeit wird vorher
+              besprochen, nicht nachher berechnet.</li>
+            <li><span class="fehlt">[FEHLT: Weitere Zusage, die der Kunde wirklich halten kann und halten will]</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LEISTUNGEN ===================== -->
+  <section id="leistungen" style="background:var(--layer-01)">
+    <div class="wrap">
+      <div class="section-head prose">
+        <p class="label">Leistungen</p>
+        <h2>Was wir machen.</h2>
+        <p class="lead">Acht Bereiche, ein Team. Sie brauchen für ein Projekt keine drei Firmen.</p>
+      </div>
+
+      <div class="grid-rule">
+
+        <article class="card">
+          <p class="label card__num">01</p>
+          <h3>Elektroinstallation</h3>
+          <p>Neubau, Umbau, Sanierung. Rohbau-, Haus- und Betriebsinstallation,
+            Verteileranlagen, Licht- und Kraftinstallation, Sprech- und Alarmanlagen,
+            Notbeleuchtung. Auf Wunsch mit KNX-Bussystem, wenn Sie Licht, Beschattung und
+            Heizung zusammenführen wollen.</p>
+        </article>
+
+        <article class="card">
+          <p class="label card__num">02</p>
+          <h3>Verteilerbau und Schaltschrankbau</h3>
+          <p>Wir planen Verteiler in E-Plan und bauen sie selbst: typengeprüfte
+            Schaltanlagenkombinationen nach VDE, Zähler- und Wandlerverteiler vom
+            Einfamilienhaus bis zur Firmeneinspeisung, Motor Control Center,
+            Steuerverteiler. Jeder Schaltschrank wird vor der Auslieferung geprüft.
+            Bestehende Verteiler sanieren wir, statt sie pauschal zu ersetzen.</p>
+        </article>
+
+        <article class="card">
+          <p class="label card__num">03</p>
+          <h3>Ladeinfrastruktur</h3>
+          <p>Wallbox für zu Hause oder Ladepunkte für den Betrieb. Wir prüfen zuerst, ob
+            Ihre vorhandene Installation die Last trägt, und sagen Ihnen vorher, was
+            nachgerüstet werden muss. Eine Wallbox an eine zu schwache Leitung zu hängen
+            ist kein Sparen.</p>
+          <p class="fehlt">[FEHLT: Übernimmt MAT die Anmeldung beim Netzbetreiber? Beratung zu Förderungen?]</p>
+        </article>
+
+        <article class="card">
+          <p class="label card__num">04</p>
+          <h3>Photovoltaik</h3>
+          <p>Beratung, Auslegung, Installation und Inbetriebnahme — aus einer Hand.
+            Schwerpunkt sind Anlagen für Gewerbe und Industrie, wir bauen aber auch auf
+            dem Einfamilienhaus.</p>
+          <p class="fehlt">[FEHLT: Übernimmt MAT Netzanmeldung und Marktstammdatenregister? Speicher ja/nein? Größte bisher gebaute Anlage in kWp?]</p>
+        </article>
+
+        <article class="card">
+          <p class="label card__num">05</p>
+          <h3>Blitz- und Überspannungsschutz</h3>
+          <p>Ein Blitzeinschlag in der Nachbarschaft reicht, um die Elektronik im ganzen
+            Haus zu zerstören — der direkte Treffer ist nicht der häufige Fall. Wir planen
+            und bauen äußeren Blitzschutz, Erdung und inneren Überspannungsschutz, für
+            Wohnhäuser wie für Betriebsanlagen.</p>
+        </article>
+
+        <article class="card">
+          <p class="label card__num">06</p>
+          <h3>Netzwerk- und IT-Infrastruktur</h3>
+          <p>Strukturierte Gebäudeverkabelung nach Norm: sternförmig, mit Reserve,
+            unabhängig vom späteren Dienst. Damit die nächste Erweiterung ein Patchkabel
+            ist und keine Baustelle. Wir messen jede Strecke durch und übergeben Ihnen die
+            Dokumentation.</p>
+        </article>
+
+        <article class="card">
+          <p class="label card__num">07</p>
+          <h3>Prüfung und Wartung</h3>
+          <p>Wir prüfen elektrische Anlagen und Geräte und übergeben Ihnen ein
+            Prüfprotokoll: Wohnhäuser, Gewerbebetriebe, Geschäfte, Gastronomie,
+            Landwirtschaft, Schulen und öffentliche Gebäude.</p>
+          <p class="fehlt">[FEHLT: fachliche Freigabe der Prüfintervalle durch den Meisterbetrieb]</p>
+        </article>
+
+        <article class="card">
+          <p class="label card__num">08</p>
+          <h3>Antennen- und Empfangstechnik</h3>
+          <p>TV- und SAT-Anlagen: Beratung zum Montageort, Montage, Einmessung.</p>
+          <p class="fehlt">[FEHLT: Wird das noch angeboten? Mit oder ohne Geräteverkauf?]</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABLAUF ===================== -->
+  <section id="ablauf">
+    <div class="wrap">
+      <div class="section-head prose">
+        <p class="label">Ablauf</p>
+        <h2>Wie eine Anfrage bei uns läuft.</h2>
+      </div>
+
+      <ol class="steps prose">
+        <li>
+          <h3>Sie melden sich.</h3>
+          <p>Telefon, E-Mail oder Formular — alle drei landen beim selben Team. Schildern
+            Sie kurz, worum es geht; ein Foto hilft oft mehr als eine lange Beschreibung.</p>
+        </li>
+        <li>
+          <h3>Wir melden uns zurück.</h3>
+          <p>Innerhalb von <span class="fehlt">[FEHLT: Reaktionszeit]</span>. Bei kleinen
+            Sachen klären wir am Telefon, ob sich ein Termin überhaupt lohnt.</p>
+        </li>
+        <li>
+          <h3>Wir sehen es uns an.</h3>
+          <p class="fehlt">[FEHLT: Ist der Ortstermin kostenlos? Ab welchem Umfang ist er nötig?]</p>
+        </li>
+        <li>
+          <h3>Sie bekommen ein Angebot.</h3>
+          <p>Schriftlich, mit Positionen und Festpreis, innerhalb von
+            <span class="fehlt">[FEHLT: Frist]</span>. Was nicht drinsteht, wird nicht
+            berechnet.</p>
+        </li>
+        <li>
+          <h3>Wir führen aus.</h3>
+          <p class="fehlt">[FEHLT: Wer ist Ihr Ansprechpartner während der Arbeiten?]</p>
+        </li>
+        <li>
+          <h3>Abnahme und Dokumentation.</h3>
+          <p>Wir gehen die Arbeiten mit Ihnen durch und übergeben die Unterlagen —
+            Prüfprotokolle, Schaltpläne, Messprotokolle, je nach Auftrag.</p>
+          <p class="fehlt">[FEHLT: Gewährleistungszusage über das gesetzliche Maß hinaus?]</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== BELEGE ===================== -->
+  <section id="belege" style="background:var(--layer-01)">
+    <div class="wrap">
+      <div class="section-head prose">
+        <p class="label">Belege</p>
+        <h2>Woran Sie uns messen können.</h2>
+      </div>
+
+      <div class="grid-rule">
+        <div class="proof card" style="border:0">
+          <h3>Markenpreis ELMAR 2023</h3>
+          <p>Im Dezember 2023 wurde Mat-Elektrotechnik mit dem Markenpreis ELMAR in
+            Kategorie 1 ausgezeichnet, vergeben von „Elektromarken. Starke Partner."</p>
+          <p class="fehlt">[FEHLT: Quelle oder Urkunde zum Beleg]</p>
+        </div>
+        <div class="proof card" style="border:0">
+          <h3>Meisterbetrieb</h3>
+          <p>Geführt von einem Elektrotechnikermeister, eingetragen bei der
+            Handwerkskammer für München und Oberbayern.</p>
+          <p class="fehlt">[FEHLT: Nummer in der Handwerksrolle]</p>
+        </div>
+        <div class="proof card" style="border:0">
+          <h3>Seit 2010 am selben Ort</h3>
+          <p>Gegründet 2010 in Germering, heute
+            <span class="fehlt">[FEHLT: aktuelle Mitarbeiterzahl]</span>
+            Mitarbeiterinnen und Mitarbeiter, darunter
+            <span class="fehlt">[FEHLT: Anzahl]</span> Auszubildende.</p>
+        </div>
+      </div>
+
+      <p class="fehlt" style="margin-top:var(--s-07)">[FEHLT: Referenzprojekte mit Namen und Zahlen. Mitgliedschaften. Zertifikate. Hersteller-Partnerschaften. Kundenstimmen mit Freigabe.]</p>
+    </div>
+  </section>
+
+  <!-- ===================== ÜBER UNS ===================== -->
+  <section id="betrieb">
+    <div class="wrap">
+      <div class="section-head prose">
+        <p class="label">Über uns</p>
+        <h2>Der Betrieb.</h2>
+      </div>
+
+      <div class="prose stack-lg">
+        <p>Mat-Elektrotechnik wurde 2010 von Miodrag Manojlovic gegründet — zunächst als
+          Einzelunternehmen, heute als GmbH mit Sitz in Germering. Er ist
+          Elektrotechnikermeister und führt den Betrieb bis heute selbst.</p>
+        <p>Aus dem Ein-Mann-Betrieb ist ein Team aus Monteuren, Obermonteuren,
+          Projektleitung und Auszubildenden geworden. Dass wir selbst ausbilden, ist keine
+          Nebensache: In einem Handwerk, in dem Fachkräfte fehlen, ist es die einzige Art,
+          die Qualität zu sichern, die wir Ihnen versprechen.</p>
+        <p>Der Name steht für Manojlovic Anlagen Technik.</p>
+        <p class="fehlt">[FEHLT: Ein Satz von Miodrag Manojlovic selbst — warum er den Betrieb gegründet hat, worauf er Wert legt]</p>
+        <p class="fehlt">[FEHLT: Porträtfoto des Geschäftsführers, mit Einwilligung und geklärten Bildrechten]</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== KONTAKT ===================== -->
+  <section id="kontakt" class="on-dark">
+    <div class="wrap">
+      <div class="contact__grid">
+
+        <div>
+          <div class="section-head prose">
+            <p class="label">Kontakt</p>
+            <h2>Sprechen wir darüber.</h2>
+          </div>
+          <div class="prose stack-lg">
+            <p>Ob eine defekte Steckdose, ein überfälliger Prüftermin oder eine Halle, die
+              neu verkabelt werden muss — schildern Sie uns kurz Ihr Anliegen. Wir sagen
+              Ihnen offen, ob wir der richtige Betrieb dafür sind.</p>
+
+            <ul class="contact__direct">
+              <li>
+                <p class="label">Telefon</p>
+                <a href="tel:+498923750352">089 23750352</a>
+                <p class="small">Montag bis Freitag <span class="fehlt">[FEHLT: Uhrzeiten]</span></p>
+              </li>
+              <li>
+                <p class="label">E-Mail</p>
+                <a href="mailto:info@mat-elektrotechnik.de">info@mat-elektrotechnik.de</a>
+              </li>
+              <li>
+                <p class="label">Vor Ort</p>
+                <address style="font-style:normal">
+                  Mat-Elektrotechnik GmbH<br>
+                  Industriestraße 12<br>
+                  82110 Germering
+                </address>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="form-panel">
+          <h3 style="margin-bottom:var(--s-06)">Ihre Anfrage</h3>
+
+          <noscript>
+            <div class="noscript">
+              <p><strong>Das Formular braucht JavaScript.</strong> Ohne JavaScript können
+                wir Ihre Nachricht nicht übergeben. Bitte rufen Sie an unter
+                <a href="tel:+498923750352">089 23750352</a> oder schreiben Sie an
+                <a href="mailto:info@mat-elektrotechnik.de">info@mat-elektrotechnik.de</a>.</p>
+            </div>
+          </noscript>
+
+          <form id="anfrage" novalidate>
+            <!-- Honigtopf gegen Bots. Fuer Menschen und Vorleseprogramme unsichtbar. -->
+            <div class="hp" aria-hidden="true">
+              <label for="webseite">Webseite (bitte frei lassen)</label>
+              <input type="text" id="webseite" name="webseite" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="field" id="f-name">
+              <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="name" name="name" autocomplete="name" required
+                     aria-required="true" aria-describedby="e-name">
+              <span class="err" id="e-name" role="alert">Bitte tragen Sie Ihren Namen ein.</span>
+            </div>
+
+            <div class="field" id="f-email">
+              <label for="email">E-Mail <span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required
+                     aria-required="true" aria-describedby="e-email">
+              <span class="err" id="e-email" role="alert">Bitte tragen Sie eine gültige E-Mail-Adresse ein, zum Beispiel name@beispiel.de</span>
+            </div>
+
+            <div class="field" id="f-tel">
+              <label for="telefon">Telefon</label>
+              <input type="tel" id="telefon" name="telefon" autocomplete="tel"
+                     aria-describedby="h-tel">
+              <span class="hint" id="h-tel">Freiwillig. Beschleunigt die Rückmeldung bei Rückfragen.</span>
+            </div>
+
+            <div class="field" id="f-ort">
+              <label for="ort">PLZ und Ort</label>
+              <input type="text" id="ort" name="ort" autocomplete="postal-code"
+                     aria-describedby="h-ort">
+              <span class="hint" id="h-ort">Damit wir gleich sagen können, ob der Ort in unserem Einzugsgebiet liegt.</span>
+            </div>
+
+            <div class="field" id="f-thema">
+              <label for="thema">Worum geht es?</label>
+              <select id="thema" name="thema">
+                <option value="">Bitte wählen</option>
+                <option>Elektroinstallation</option>
+                <option>Verteilerbau / Schaltschrank</option>
+                <option>Wallbox / Ladeinfrastruktur</option>
+                <option>Photovoltaik</option>
+                <option>Blitz- und Überspannungsschutz</option>
+                <option>Netzwerk / IT-Infrastruktur</option>
+                <option>Prüfung und Wartung</option>
+                <option>Antennen- und Empfangstechnik</option>
+                <option>Reparatur / Störung</option>
+                <option>Etwas anderes</option>
+              </select>
+            </div>
+
+            <div class="field" id="f-nachricht">
+              <label for="nachricht">Ihr Anliegen <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="nachricht" name="nachricht" required aria-required="true"
+                        aria-describedby="e-nachricht h-nachricht"></textarea>
+              <span class="hint" id="h-nachricht">Je konkreter, desto schneller können wir einschätzen, was nötig ist.</span>
+              <span class="err" id="e-nachricht" role="alert">Bitte beschreiben Sie kurz Ihr Anliegen.</span>
+            </div>
+
+            <p class="small" style="margin:var(--s-06) 0;color:var(--text-secondary)">
+              Mit dem Absenden öffnet sich Ihr E-Mail-Programm mit der fertigen Nachricht.
+              Die Daten werden dabei <strong>nicht an diese Website übertragen</strong> und
+              nirgends gespeichert. Näheres in der
+              <a href="datenschutz.html">Datenschutzerklärung</a>.
+            </p>
+
+            <button class="btn btn--primary" type="submit" style="width:100%">Anfrage senden</button>
+          </form>
+
+          <div class="status status--ok" id="status-ok" hidden>
+            <h3>&#10003; Ihre Nachricht ist fertig</h3>
+            <p>Ihr E-Mail-Programm sollte sich geöffnet haben. <strong>Bitte senden Sie die
+              Mail dort noch ab</strong> — erst dann erreicht sie uns.</p>
+            <p>Falls sich nichts geöffnet hat, kopieren Sie den Text und schicken ihn an
+              <a href="mailto:info@mat-elektrotechnik.de">info@mat-elektrotechnik.de</a>
+              — oder rufen Sie einfach an: <a href="tel:+498923750352">089 23750352</a>.</p>
+            <label class="label" for="fallback">Ihre Nachricht zum Kopieren</label>
+            <textarea id="fallback" readonly rows="10"></textarea>
+            <div class="btn-row">
+              <button class="btn btn--secondary" type="button" id="copy">Text kopieren</button>
+              <a class="btn btn--secondary" href="tel:+498923750352">Stattdessen anrufen</a>
+            </div>
+          </div>
+
+          <div class="status status--warn" id="status-err" hidden>
+            <h3>Bitte prüfen Sie Ihre Eingaben</h3>
+            <p>Einige Pflichtfelder sind noch nicht ausgefüllt. Die betroffenen Felder sind
+              rot markiert und beschriftet.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head prose">
+        <p class="label">Häufige Fragen</p>
+        <h2>Was Kunden uns vorher fragen.</h2>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Kommen Sie auch zu mir?</summary>
+          <div class="answer">
+            <p>Wir arbeiten im Großraum München und in der angrenzenden Region.</p>
+            <p class="fehlt">[FEHLT: Konkreter Radius oder Ortsliste — ohne das bleibt die Antwort unbrauchbar.]</p>
+          </div>
+        </details>
+        <details>
+          <summary>Machen Sie auch kleine Aufträge?</summary>
+          <div class="answer">
+            <p>Ja. Eine einzelne Steckdose, ein defekter Schalter, eine Lampe, die hängen
+              soll — das gehört genauso dazu wie der Hallenumbau.</p>
+            <p class="fehlt">[FEHLT: Gibt es einen Mindestauftragswert oder eine Anfahrtspauschale?]</p>
+          </div>
+        </details>
+        <details>
+          <summary>Was kostet ein Angebot?</summary>
+          <div class="answer">
+            <p class="fehlt">[FEHLT: Antwort. Die alte Seite verspricht „kostenlose Beratung" — ob das auch für Ortstermin und Angebotserstellung gilt, muss der Kunde sagen.]</p>
+          </div>
+        </details>
+        <details>
+          <summary>Wie schnell bekomme ich einen Termin?</summary>
+          <div class="answer">
+            <p class="fehlt">[FEHLT: Realistische Aussage. Eine ehrliche Angabe („in der Regel X Wochen, Notfälle am selben Tag") ist hier mehr wert als ein Versprechen, das nicht gehalten wird.]</p>
+          </div>
+        </details>
+        <details>
+          <summary>Haben Sie einen Notdienst?</summary>
+          <div class="answer">
+            <p class="fehlt">[FEHLT: ja/nein, Nummer, Zeiten, Zuschlag]</p>
+          </div>
+        </details>
+        <details>
+          <summary>Wie oft muss meine Elektroanlage geprüft werden?</summary>
+          <div class="answer">
+            <p>Für Betriebe richtet sich das Prüfintervall nach der
+              Gefährdungsbeurteilung; für Wohngebäude gibt es keine allgemeine gesetzliche
+              Pflicht, wohl aber eine Empfehlung. Wir sagen Ihnen nach einer Besichtigung,
+              was in Ihrem Fall sinnvoll ist.</p>
+            <p class="fehlt">[FEHLT: fachliche Freigabe dieser Antwort durch den Meisterbetrieb]</p>
+          </div>
+        </details>
+        <details>
+          <summary>Ich will eine Wallbox. Was muss ich wissen?</summary>
+          <div class="answer">
+            <p>Zuerst muss geklärt werden, ob Ihre vorhandene Installation und Ihr
+              Hausanschluss die zusätzliche Last tragen. Das prüfen wir vor der Montage.</p>
+            <p class="fehlt">[FEHLT: Übernimmt MAT die Anmeldung beim Netzbetreiber? Berät MAT zu Förderungen?]</p>
+          </div>
+        </details>
+        <details>
+          <summary>Bauen Sie auch Photovoltaik auf Einfamilienhäusern?</summary>
+          <div class="answer">
+            <p>Ja, auch wenn unser Schwerpunkt bei größeren Anlagen für Gewerbe und
+              Industrie liegt.</p>
+            <p class="fehlt">[FEHLT: Bestätigung, dass EFH-Anlagen wirklich angenommen werden — sonst streichen.]</p>
+          </div>
+        </details>
+        <details>
+          <summary>Bilden Sie aus?</summary>
+          <div class="answer">
+            <p>Ja, zum Elektroniker für Energie- und Gebäudetechnik.</p>
+            <p class="fehlt">[FEHLT: Sind aktuell Stellen offen? Wie viele Azubis werden pro Jahr eingestellt?]</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <p class="wordmark" style="margin-bottom:var(--s-05)">
+          <span class="wordmark__mat">mat</span>
+          <span class="wordmark__sub">Elektrotechnik</span>
+        </p>
+        <address class="small" style="font-style:normal;color:var(--text-secondary)">
+          Mat-Elektrotechnik GmbH<br>
+          Industriestraße 12, 82110 Germering<br>
+          <a href="tel:+498923750352">089 23750352</a><br>
+          <a href="mailto:info@mat-elektrotechnik.de">info@mat-elektrotechnik.de</a>
+        </address>
+      </div>
+
+      <nav aria-label="Seitenbereiche">
+        <p class="label">Seite</p>
+        <ul>
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#ablauf">Ablauf</a></li>
+          <li><a href="#betrieb">Der Betrieb</a></li>
+          <li><a href="#faq">Häufige Fragen</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Rechtliches">
+        <p class="label">Rechtliches</p>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <p class="footer__legal small">
+      © <span id="jahr">2026</span> Mat-Elektrotechnik GmbH · Amtsgericht München HRB 246899
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var form = document.getElementById("anfrage");
+  if (!form) return;
+
+  var DRAFT = "mat-anfrage-entwurf";
+  var okBox = document.getElementById("status-ok");
+  var errBox = document.getElementById("status-err");
+  var fallback = document.getElementById("fallback");
+  var felder = ["name", "email", "telefon", "ort", "thema", "nachricht"];
+
+  document.getElementById("jahr").textContent = new Date().getFullYear();
+
+  /* --- Entwurf sichern, damit keine Anfrage verloren geht ------------------ */
+  function speichern() {
+    try {
+      var d = {};
+      felder.forEach(function (k) {
+        var el = document.getElementById(k === "telefon" ? "telefon" : k);
+        if (el) d[k] = el.value;
+      });
+      localStorage.setItem(DRAFT, JSON.stringify(d));
+    } catch (e) { /* privater Modus o.ae. — kein Grund zu scheitern */ }
+  }
+  function laden() {
+    try {
+      var raw = localStorage.getItem(DRAFT);
+      if (!raw) return;
+      var d = JSON.parse(raw);
+      Object.keys(d).forEach(function (k) {
+        var el = document.getElementById(k);
+        if (el && d[k]) el.value = d[k];
+      });
+    } catch (e) {}
+  }
+  function verwerfen() {
+    try { localStorage.removeItem(DRAFT); } catch (e) {}
+  }
+  laden();
+  form.addEventListener("input", speichern);
+
+  /* --- Pruefung ------------------------------------------------------------ */
+  function markiere(id, ungueltig) {
+    var f = document.getElementById("f-" + id);
+    var e = document.getElementById(id);
+    if (!f || !e) return;
+    f.setAttribute("data-invalid", ungueltig ? "true" : "false");
+    e.setAttribute("aria-invalid", ungueltig ? "true" : "false");
+  }
+  function mailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }
+
+  function pruefe() {
+    var fehler = [];
+    var name = document.getElementById("name").value.trim();
+    var mail = document.getElementById("email").value.trim();
+    var text = document.getElementById("nachricht").value.trim();
+
+    markiere("name", !name);           if (!name) fehler.push("name");
+    markiere("email", !mailOk(mail));  if (!mailOk(mail)) fehler.push("email");
+    markiere("nachricht", !text);      if (!text) fehler.push("nachricht");
+    return fehler;
+  }
+
+  felder.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener("blur", function () {
+      if (el.getAttribute("aria-invalid") === "true") pruefe();
+    });
+  });
+
+  /* --- Absenden ------------------------------------------------------------ */
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+
+    /* Honigtopf: ausgefuellt heisst Bot. Still abbrechen, nichts verraten. */
+    if (document.getElementById("webseite").value !== "") {
+      okBox.hidden = false;
+      return;
+    }
+
+    var fehler = pruefe();
+    if (fehler.length) {
+      errBox.hidden = false;
+      okBox.hidden = true;
+      var erstes = document.getElementById(fehler[0]);
+      if (erstes) erstes.focus();
+      return;
+    }
+    errBox.hidden = true;
+
+    function v(id) { var e = document.getElementById(id); return e ? e.value.trim() : ""; }
+
+    var zeilen = [
+      "Anfrage über die Website",
+      "",
+      "Name:      " + v("name"),
+      "E-Mail:    " + v("email"),
+      "Telefon:   " + (v("telefon") || "—"),
+      "PLZ/Ort:   " + (v("ort") || "—"),
+      "Thema:     " + (v("thema") || "—"),
+      "",
+      "Anliegen:",
+      v("nachricht")
+    ];
+    var text = zeilen.join("\n");
+    var betreff = "Anfrage: " + (v("thema") || "Elektrotechnik") + " — " + v("name");
+
+    fallback.value = text;
+    okBox.hidden = false;
+    verwerfen();
+
+    var mailto = "mailto:info@mat-elektrotechnik.de"
+      + "?subject=" + encodeURIComponent(betreff)
+      + "&body=" + encodeURIComponent(text);
+
+    /* Erst anzeigen, dann oeffnen — falls das Mailprogramm fehlt,
+       steht der Text trotzdem auf der Seite und ist nicht verloren. */
+    okBox.scrollIntoView({ block: "nearest" });
+    window.setTimeout(function () { window.location.href = mailto; }, 80);
+  });
+
+  /* --- Kopieren ------------------------------------------------------------ */
+  var copy = document.getElementById("copy");
+  if (copy) copy.addEventListener("click", function () {
+    fallback.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    if (navigator.clipboard && !ok) {
+      navigator.clipboard.writeText(fallback.value).then(function () {
+        copy.textContent = "Kopiert";
+      });
+      return;
+    }
+    copy.textContent = ok ? "Kopiert" : "Bitte von Hand markieren";
+  });
+})();
+</script>
+
+</body>
+</html>
