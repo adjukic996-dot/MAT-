@@ -1,0 +1,8 @@
+# Das Repo ist OEFFENTLICH. Diese Dateien enthalten interne Einschaetzungen zum
+# Kunden, offene Rechtsrisiken und Arbeitsnotizen. Sie gehoeren nicht ins Netz.
+BRIEF.md
+DESIGN.md
+UEBERGABE.md
+
+.DS_Store
+bilder/_bilder.json

@@ -1,0 +1,6 @@
+# VORSCHAU — noch nicht freigegeben. Zum Livegang: die beiden Disallow-Zeilen
+# entfernen und die noindex-Zeile im Generator loeschen.
+User-agent: *
+Disallow: /
+
+# Sitemap: https://adjukic996-dot.github.io/MAT-/sitemap.xml
