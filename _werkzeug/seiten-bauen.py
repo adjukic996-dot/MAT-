@@ -21,6 +21,10 @@ import pathlib, re, html, json
 
 WURZEL = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://adjukic996-dot.github.io/MAT-"
+# Pfadteil von SITE, also "/MAT-" — leer, wenn die Seite einmal an der Wurzel
+# einer eigenen Domain liegt. Nur die 404-Seite braucht ihn (siehe seite_404).
+from urllib.parse import urlparse
+BASIS = urlparse(SITE).path.rstrip("/")
 
 TEL_ROH = "+498923750352"
 TEL = "089 23750352"
@@ -1482,6 +1486,11 @@ def seite_datenschutz():
 def seite_404():
     """GitHub Pages liefert diese Datei bei jeder unbekannten Adresse aus.
     Absolute Pfade, weil die Seite auch unter /leistungen/xyz erscheinen kann."""
+    # ACHTUNG: Absolut heisst ab der Wurzel der DOMAIN, nicht ab der Wurzel des
+    # Projekts. Die Seite liegt aber unter /MAT-. Ohne BASIS davor suchte die
+    # 404-Seite ihre Dateien unter /stil.css statt /MAT-/stil.css und erschien
+    # ohne Stylesheet, ohne Logo und ohne Schrift; jeder Link darauf ging ins
+    # Leere. Das Voranstellen passiert gesammelt am Ende der Funktion.
     s = kopf("", "Seite nicht gefunden — Mat-Elektrotechnik GmbH",
              "Diese Seite gibt es nicht. Hier geht es zurück zur Startseite.",
              "404.html", 0)
@@ -1520,6 +1529,9 @@ def seite_404():
               .replace('href="impressum.html"','href="/impressum.html"') \
               .replace('href="datenschutz.html"','href="/datenschutz.html"') \
               .replace('src="bilder/','src="/bilder/')
+    if BASIS:
+        s = s.replace('href="/', 'href="' + BASIS + '/')
+        s = s.replace('src="/', 'src="' + BASIS + '/')
     return s
 
 
