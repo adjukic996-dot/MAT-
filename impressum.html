@@ -22,7 +22,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="bilder/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="bilder/apple-touch-icon.png">
-<link rel="preload" href="fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="stil.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Electrician","@id":"https://adjukic996-dot.github.io/MAT-/#betrieb","name":"Mat-Elektrotechnik GmbH","legalName":"Mat-Elektrotechnik GmbH","url":"https://adjukic996-dot.github.io/MAT-/","logo":"https://adjukic996-dot.github.io/MAT-/bilder/logo-mat.svg","image":"https://adjukic996-dot.github.io/MAT-/bilder/og-start.jpg","telephone":"+49 89 23750352","email":"info@mat-elektrotechnik.de","foundingDate":"2010","vatID":"DE323580611","address":{"@type":"PostalAddress","streetAddress":"Industriestraße 12","postalCode":"82110","addressLocality":"Germering","addressRegion":"Bayern","addressCountry":"DE"},"founder":{"@type":"Person","name":"Miodrag Manojlovic"},"areaServed":{"@type":"Place","name":"Großraum München"},"award":"Markenpreis ELMAR 2023","knowsAbout":["Elektroinstallation","Verteilerbau und Schaltschrankbau","Ladeinfrastruktur","Photovoltaik","Blitz- und Überspannungsschutz","Netzwerk- und IT-Infrastruktur","Prüfung und Wartung","Antennen- und Empfangstechnik"]}</script>
 </head>
@@ -170,6 +170,39 @@
   </div>
 </footer>
 <script>var j=document.getElementById("jahr");if(j)j.textContent=new Date().getFullYear();</script>
+<script>
+(function(){
+  var d=document,w=window,wurzel=d.documentElement;
+  var kopf=d.querySelector(".header");
+  if(kopf){
+    var kante=function(){kopf.classList.toggle("ist-gescrollt",w.scrollY>8)};
+    kante();w.addEventListener("scroll",kante,{passive:true});
+  }
+  if(!("IntersectionObserver" in w))return;
+  if(w.matchMedia&&w.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  var auswahl=".section-head,.hero__text>*,.hero__bild,.teaser,.card,.fakten>div,"+
+    ".steps>li,.galerie figure,.team figure,.promise,.faq details,.weiter a,"+
+    ".bild-breit,.form-panel,.direkt li,.anfahrt,.fehler ul a";
+  var liste=[].slice.call(d.querySelectorAll(auswahl));
+  if(!liste.length)return;
+  var zaehler=new WeakMap();
+  liste.forEach(function(el){
+    el.classList.add("wird-sichtbar");
+    var p=el.parentNode,i=zaehler.get(p)||0;zaehler.set(p,i+1);
+    if(i>0)el.style.setProperty("--verzug",Math.min(i,8)*55+"ms");
+  });
+  wurzel.setAttribute("data-motion","an");
+  var gefeuert=false;
+  var b=new IntersectionObserver(function(eintraege){
+    gefeuert=true;
+    eintraege.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add("ist-da");b.unobserve(e.target)}
+    });
+  },{rootMargin:"0px 0px -8% 0px",threshold:.08});
+  liste.forEach(function(el){b.observe(el)});
+  setTimeout(function(){if(!gefeuert)wurzel.removeAttribute("data-motion")},1500);
+})();
+</script>
 
 </body>
 </html>

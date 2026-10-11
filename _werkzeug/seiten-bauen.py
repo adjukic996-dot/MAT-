@@ -309,7 +309,7 @@ def kopf(seite, titel, beschreibung, pfad, tiefe=0, og_bild="og-start.jpg", krum
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="{P}bilder/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{P}bilder/apple-touch-icon.png">
-<link rel="preload" href="{P}fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{P}fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{P}stil.css">
 {jsonld}</head>
 <body>
@@ -376,6 +376,52 @@ def cta_band(tiefe=0):
 </section>"""
 
 
+# Bewegung. Zwei Dinge: eine Kante an der Kopfleiste beim Scrollen, und Inhalte,
+# die beim Hereinscrollen einblenden.
+#
+# Ohne JavaScript passiert nichts — und es FEHLT auch nichts: Die Einblendregeln
+# in stil.css haengen an html[data-motion="an"], und dieses Attribut setzt erst
+# das Skript hier. Wer reduzierte Bewegung eingestellt hat, bekommt es gar nicht
+# erst gesetzt. Feuert der Beobachter wider Erwarten nie, faellt das Attribut
+# nach 1,5 s wieder weg und alles steht sofort sichtbar da.
+#
+# Steht bewusst als eigene Konstante und nicht im f-String von fuss():
+# die geschweiften Klammern von JavaScript kollidieren dort mit den Platzhaltern.
+BEWEGUNG_JS = """<script>
+(function(){
+  var d=document,w=window,wurzel=d.documentElement;
+  var kopf=d.querySelector(".header");
+  if(kopf){
+    var kante=function(){kopf.classList.toggle("ist-gescrollt",w.scrollY>8)};
+    kante();w.addEventListener("scroll",kante,{passive:true});
+  }
+  if(!("IntersectionObserver" in w))return;
+  if(w.matchMedia&&w.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  var auswahl=".section-head,.hero__text>*,.hero__bild,.teaser,.card,.fakten>div,"+
+    ".steps>li,.galerie figure,.team figure,.promise,.faq details,.weiter a,"+
+    ".bild-breit,.form-panel,.direkt li,.anfahrt,.fehler ul a";
+  var liste=[].slice.call(d.querySelectorAll(auswahl));
+  if(!liste.length)return;
+  var zaehler=new WeakMap();
+  liste.forEach(function(el){
+    el.classList.add("wird-sichtbar");
+    var p=el.parentNode,i=zaehler.get(p)||0;zaehler.set(p,i+1);
+    if(i>0)el.style.setProperty("--verzug",Math.min(i,8)*55+"ms");
+  });
+  wurzel.setAttribute("data-motion","an");
+  var gefeuert=false;
+  var b=new IntersectionObserver(function(eintraege){
+    gefeuert=true;
+    eintraege.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add("ist-da");b.unobserve(e.target)}
+    });
+  },{rootMargin:"0px 0px -8% 0px",threshold:.08});
+  liste.forEach(function(el){b.observe(el)});
+  setTimeout(function(){if(!gefeuert)wurzel.removeAttribute("data-motion")},1500);
+})();
+</script>"""
+
+
 def fuss(tiefe=0, skript=""):
     P = "../" * tiefe
     leist = "".join(
@@ -424,6 +470,7 @@ def fuss(tiefe=0, skript=""):
   </div>
 </footer>
 <script>var j=document.getElementById("jahr");if(j)j.textContent=new Date().getFullYear();</script>
+{BEWEGUNG_JS}
 {skript}
 </body>
 </html>
@@ -653,7 +700,11 @@ def teaser_raster(tiefe=0, nur=None):
             '<p class="small muted">' + l["kurz"] + '</p>'
             '<span class="teaser__mehr">Mehr dazu</span>'
             '</div></a>')
-    return '<div class="grid-rule">' + "".join(teile) + '</div>'
+    # grid-bento gilt nur fuer das vollstaendige Leistungsraster. Die drei
+    # anderen grid-rule-Raster (Karten, Stimmen, Karriere) bleiben gleichmaessig
+    # — ein Bento mit wechselnden Spannweiten braucht eine feste Anzahl.
+    klasse = "grid-rule grid-bento" if not nur else "grid-rule"
+    return '<div class="' + klasse + '">' + "".join(teile) + '</div>'
 
 
 def ablauf_block():

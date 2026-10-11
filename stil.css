@@ -1,57 +1,73 @@
 /* ===========================================================================
    MAT Elektrotechnik — Stylesheet
-   Designsystem abgeleitet von IBM Carbon (Apache-2.0). Werte aus DESIGN.md.
-   Abweichungen von Carbon: DESIGN.md Abschnitt 2.1.
-   Schrift: IBM Plex Sans (SIL OFL 1.1), selbst gehostet, latin + latin-ext.
+   Designstil abgeleitet von attio.com: Bento-Raster, weiche Radien, flache
+   Karten mit Haarlinie und sehr leichtem Schatten, Bewegung beim Scrollen.
+   Schrift: Geist (SIL OFL 1.1), selbst gehostet, latin + latin-ext.
+
+   UNVERAENDERT GEGENUEBER DER CARBON-FASSUNG:
+   - saemtliche Farbwerte (Graurampe und Signalrot), siehe DESIGN.md
+   - alle Klassennamen, damit der Generator unveraendert bleibt
+   - Fokusregeln, Kontrastausnahmen auf dunklem Grund, Trefferflaechen
+   GEAENDERT: Schrift, Radien, Flaechen, Schatten, Rhythmus, Bewegung.
    =========================================================================== */
 
-/* --- Schrift: Variable Font, Achse wght 100-700, eine Datei je Subset ------ */
+/* --- Schrift: Variable Font, Achse wght 400-700, eine Datei je Subset ------ */
 @font-face{
-  font-family:"IBM Plex Sans";font-style:normal;font-weight:100 700;font-display:swap;
-  src:url("fonts/ibm-plex-sans-latin.woff2") format("woff2");
+  font-family:"Geist";font-style:normal;font-weight:400 700;font-display:swap;
+  src:url("fonts/geist-latin.woff2") format("woff2");
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face{
-  font-family:"IBM Plex Sans";font-style:normal;font-weight:100 700;font-display:swap;
-  src:url("fonts/ibm-plex-sans-latin-ext.woff2") format("woff2");
+  font-family:"Geist";font-style:normal;font-weight:400 700;font-display:swap;
+  src:url("fonts/geist-latin-ext.woff2") format("woff2");
   unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
 /* --- Token ---------------------------------------------------------------- */
 :root{
-  /* Carbon-Graurampe, unveraendert */
+  /* Farben: unveraendert aus der Carbon-Fassung uebernommen */
   --text-primary:#161616; --text-secondary:#525252; --text-helper:#6f6f6f;
   --background:#ffffff;   --layer-01:#f4f4f4;       --background-inverse:#161616;
   --border-subtle:#c6c6c6;--border-strong:#8d8d8d;
-  /* Signal, MAT-eigen */
   --signal:#D70036; --signal-hover:#B3002D; --signal-on-dark:#FF4D6E; --signal-wash:#FDF1F4;
   --support-error:#B3002D; --support-success:#0E6027;
   --focus:#161616; --focus-inset:#ffffff;
 
-  --font-sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --t-display:clamp(2.125rem,1.35rem + 3.3vw,4.25rem);
-  --t-h2:clamp(1.625rem,1.25rem + 1.6vw,2.75rem);
+  /* Haarlinien und Schatten als Tonwerte derselben Tinte, keine neuen Farben */
+  --hairline:rgba(22,22,22,.09);
+  --hairline-stark:rgba(22,22,22,.16);
+  --schatten-1:0 1px 2px rgba(22,22,22,.04), 0 1px 3px rgba(22,22,22,.03);
+  --schatten-2:0 1px 2px rgba(22,22,22,.04), 0 6px 16px -4px rgba(22,22,22,.08);
+  --schatten-3:0 2px 4px rgba(22,22,22,.05), 0 14px 32px -8px rgba(22,22,22,.13);
+
+  --font-sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --t-display:clamp(2.25rem,1.3rem + 4vw,4.5rem);
+  --t-h2:clamp(1.75rem,1.3rem + 1.9vw,3rem);
   --t-h3:clamp(1.1875rem,1.1rem + 0.37vw,1.375rem);
-  --t-lead:clamp(1.125rem,1.07rem + 0.23vw,1.25rem);
+  --t-lead:clamp(1.125rem,1.07rem + 0.23vw,1.3125rem);
   --t-body:1.0625rem; --t-small:0.9375rem; --t-label:0.8125rem;
 
-  /* Carbon spacing-01..13, unveraendert */
+  /* Abstandsskala unveraendert */
   --s-01:.125rem; --s-02:.25rem; --s-03:.5rem;  --s-04:.75rem;
   --s-05:1rem;    --s-06:1.5rem; --s-07:2rem;   --s-08:2.5rem;
   --s-09:3rem;    --s-10:4rem;   --s-11:5rem;   --s-12:6rem; --s-13:10rem;
 
-  --section-y:clamp(4rem,2.5rem + 6.4vw,8rem);
+  --section-y:clamp(4.5rem,3rem + 6.4vw,9rem);
   --gutter:clamp(1.25rem,.9rem + 1.5vw,2.5rem);
-  --page-max:72rem; --measure:66ch;
-  --radius:0;
+  --page-max:75rem; --measure:66ch;
 
-  /* Carbon-Bewegung, unveraendert */
-  --dur-fast-01:70ms; --dur-fast-02:110ms; --dur-mod-01:150ms; --dur-mod-02:240ms;
-  --ease-standard:cubic-bezier(.2,0,.38,.9);
-  --ease-entrance:cubic-bezier(0,0,.38,.9);
-  --ease-exit:cubic-bezier(.2,0,1,.9);
+  /* Radien: der sichtbarste Unterschied zur Carbon-Fassung */
+  --radius-xs:6px; --radius-sm:10px; --radius:14px; --radius-lg:20px; --radius-pill:999px;
 
-  --focus-width:2px; --focus-offset:2px;
+  /* Bewegung: laengere Wege als bei Carbon, aber eine einzige Kurvenfamilie */
+  --dur-fast-01:70ms; --dur-fast-02:120ms; --dur-mod-01:180ms; --dur-mod-02:260ms;
+  --dur-slow:440ms;
+  --ease-standard:cubic-bezier(.4,0,.2,1);
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-entrance:cubic-bezier(.16,1,.3,1);
+  --ease-exit:cubic-bezier(.4,0,1,1);
+
+  --focus-width:2px; --focus-offset:3px;
   --tap-min:44px; --tap-comfort:48px;
 }
 
@@ -62,6 +78,7 @@ body{
   margin:0;background:var(--background);color:var(--text-primary);
   font-family:var(--font-sans);font-size:var(--t-body);line-height:1.6;font-weight:400;
   -webkit-font-smoothing:antialiased;overflow-wrap:break-word;
+  font-feature-settings:"cv11","ss01";
 }
 img{max-width:100%;height:auto;display:block;background:var(--layer-01)}
 ::selection{background:var(--signal);color:#fff}
@@ -69,37 +86,56 @@ img{max-width:100%;height:auto;display:block;background:var(--layer-01)}
 /* Fokus: niemals entfernt.
    Der Ring liegt wegen outline-offset AUSSERHALB des Elements und muss deshalb
    gegen die Flaeche DAHINTER kontrastieren, nicht gegen das Element selbst. */
-:focus-visible{outline:var(--focus-width) solid var(--focus);outline-offset:var(--focus-offset)}
+:focus-visible{outline:var(--focus-width) solid var(--focus);outline-offset:var(--focus-offset);border-radius:var(--radius-xs)}
 .on-dark :focus-visible{outline-color:var(--focus-inset)}
 .on-dark .form-panel :focus-visible{outline-color:var(--focus)}
 
 /* --- Typografie ----------------------------------------------------------- */
 h1,h2,h3,h4{margin:0;text-wrap:balance}
-h1{font-size:var(--t-display);line-height:1.05;font-weight:400;letter-spacing:-.01em}
-h2{font-size:var(--t-h2);line-height:1.15;font-weight:400;letter-spacing:0}
-h3{font-size:var(--t-h3);line-height:1.35;font-weight:600}
-h4{font-size:var(--t-body);line-height:1.4;font-weight:600}
+h1{font-size:var(--t-display);line-height:1.02;font-weight:600;letter-spacing:-.032em}
+h2{font-size:var(--t-h2);line-height:1.08;font-weight:600;letter-spacing:-.026em}
+h3{font-size:var(--t-h3);line-height:1.3;font-weight:600;letter-spacing:-.012em}
+h4{font-size:var(--t-body);line-height:1.4;font-weight:600;letter-spacing:-.008em}
 p,ul,ol{margin:0}
-.lead{font-size:var(--t-lead);line-height:1.55}
+.lead{font-size:var(--t-lead);line-height:1.5;letter-spacing:-.011em;color:var(--text-secondary)}
 .small{font-size:var(--t-small);line-height:1.55}
 .muted{color:var(--text-secondary)}
 /* Auf dunklem Grund ist text-secondary unlesbar (2,32:1). Carbon Gray 30
    erreicht dort 10,59:1. Gilt systemweit, damit der Fehler nicht wiederkehrt.
    Das helle Formularfeld liegt INNERHALB der dunklen Sektion und braucht
    deshalb wieder den dunklen Ton — dieselbe Ausnahme wie beim Fokusring. */
-.on-dark .muted{color:var(--border-subtle)}
-.on-dark .form-panel .muted{color:var(--text-secondary)}
+.on-dark .muted,.on-dark .lead{color:var(--border-subtle)}
+.on-dark .form-panel .muted,.on-dark .form-panel .lead{color:var(--text-secondary)}
+
+/* Eyebrow als kleine Plakette statt als nackte Zeile — attio-Handschrift */
 .label{
-  font-size:var(--t-label);line-height:1.2;font-weight:600;letter-spacing:.08em;
+  display:inline-flex;align-items:center;gap:var(--s-03);
+  font-size:var(--t-label);line-height:1.2;font-weight:500;letter-spacing:.055em;
   text-transform:uppercase;color:var(--text-secondary);
+  padding:var(--s-02) var(--s-04);border:1px solid var(--hairline);
+  border-radius:var(--radius-pill);background:var(--background);
 }
-.on-dark .label{color:var(--border-subtle)}
+.label::before{
+  content:"";width:5px;height:5px;border-radius:50%;background:var(--signal);flex:0 0 auto;
+}
+.on-dark .label{color:var(--border-subtle);border-color:rgba(255,255,255,.18);background:transparent}
+.on-dark .label::before{background:var(--signal-on-dark)}
+/* Auf dem Telefon faellt die Plakette weg. Gemessen bei 375 px: "Elektrofach-
+   betrieb · Germering bei München" braucht zwei Zeilen, und eine zweizeilige
+   Plakette ueber die volle Breite sieht aus wie ein Versehen. Der Punkt bleibt,
+   die Umrandung geht. */
+@media (max-width:40rem){
+  .label{border:0;background:transparent;padding:0}
+}
 .prose{max-width:var(--measure)}
 .stack>*+*{margin-top:var(--s-05)}
 .stack-lg>*+*{margin-top:var(--s-07)}
 
-a{color:inherit;text-decoration:underline;text-underline-offset:.18em;text-decoration-thickness:1px}
+a{color:inherit;text-decoration:underline;text-underline-offset:.2em;
+  text-decoration-thickness:1px;text-decoration-color:var(--hairline-stark);
+  transition:text-decoration-color var(--dur-fast-02) var(--ease-standard),color var(--dur-fast-02) var(--ease-standard)}
 a:hover{text-decoration-color:var(--signal);text-decoration-thickness:2px}
+.on-dark a{text-decoration-color:rgba(255,255,255,.3)}
 .on-dark a:hover{text-decoration-color:var(--signal-on-dark)}
 
 .liste{padding-left:var(--s-06)}
@@ -109,7 +145,7 @@ a:hover{text-decoration-color:var(--signal);text-decoration-thickness:2px}
 /* --- Layout --------------------------------------------------------------- */
 .wrap{max-width:var(--page-max);margin-inline:auto;padding-inline:var(--gutter)}
 section{padding-block:var(--section-y)}
-.section-head{margin-bottom:var(--s-09)}
+.section-head{margin-bottom:var(--s-10);max-width:var(--measure)}
 .section-head>*+*{margin-top:var(--s-05)}
 .flaeche{background:var(--layer-01)}
 
@@ -117,36 +153,62 @@ section{padding-block:var(--section-y)}
 .skip{
   position:absolute;left:var(--s-05);top:var(--s-05);transform:translateY(-200%);
   background:var(--signal);color:#fff;padding:var(--s-04) var(--s-06);
-  text-decoration:none;font-weight:600;z-index:100;
-  transition:transform var(--dur-fast-02) var(--ease-entrance);
+  text-decoration:none;font-weight:600;z-index:100;border-radius:var(--radius-sm);
+  transition:transform var(--dur-mod-01) var(--ease-entrance);
 }
 .skip:focus{transform:translateY(0)}
 
 /* --- Kopfzeile ------------------------------------------------------------ */
-.header{position:sticky;top:0;z-index:50;background:var(--background);border-bottom:1px solid var(--border-subtle)}
+/* Beim Scrollen wird die Leiste durchscheinend und bekommt eine Kante.
+   Ohne JavaScript bleibt sie schlicht weiss — nichts geht verloren. */
+.header{
+  position:sticky;top:0;z-index:50;background:var(--background);
+  border-bottom:1px solid transparent;
+  transition:border-color var(--dur-mod-01) var(--ease-standard),
+             background-color var(--dur-mod-01) var(--ease-standard),
+             box-shadow var(--dur-mod-01) var(--ease-standard);
+}
+.header.ist-gescrollt{
+  background:rgba(255,255,255,.82);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  backdrop-filter:saturate(180%) blur(14px);
+  border-bottom-color:var(--hairline);box-shadow:var(--schatten-1);
+}
 .header__top{display:flex;align-items:center;justify-content:space-between;gap:var(--s-05);padding-block:var(--s-04)}
 .logo{display:inline-flex;align-items:center;min-height:var(--tap-min);padding-block:var(--s-02);text-decoration:none}
-.logo img,.logo svg{height:34px;width:auto}
+.logo img,.logo svg{height:34px;width:auto;transition:opacity var(--dur-fast-02) var(--ease-standard)}
+.logo:hover img{opacity:.7}
 .header__tel{
   display:inline-flex;align-items:center;min-height:var(--tap-comfort);
-  padding-inline:var(--s-04);margin-inline-end:calc(var(--s-04) * -1);
+  padding-inline:var(--s-05);margin-inline-end:calc(var(--s-03) * -1);
   font-weight:600;color:var(--signal);text-decoration:none;white-space:nowrap;
-  transition:color var(--dur-fast-02) var(--ease-standard);
+  border:1px solid var(--hairline);border-radius:var(--radius-pill);
+  transition:color var(--dur-fast-02) var(--ease-standard),
+             border-color var(--dur-fast-02) var(--ease-standard),
+             background-color var(--dur-fast-02) var(--ease-standard);
 }
-.header__tel:hover{color:var(--signal-hover);text-decoration:underline;text-decoration-thickness:2px}
+.header__tel:hover{color:var(--signal-hover);border-color:var(--signal);background:var(--signal-wash)}
 
 /* Navigation: immer sichtbar, bricht um. Kein Schalter, kein JavaScript. */
-.nav{border-top:1px solid var(--border-subtle)}
-.nav ul{display:flex;flex-wrap:wrap;list-style:none;margin:0;padding:0;gap:0 var(--s-06)}
+.nav{border-top:1px solid var(--hairline)}
+.nav ul{display:flex;flex-wrap:wrap;list-style:none;margin:0;padding:0;gap:0 var(--s-02)}
 .nav a{
-  display:inline-flex;align-items:center;min-height:var(--tap-min);
-  font-size:var(--t-label);font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  position:relative;display:inline-flex;align-items:center;min-height:var(--tap-min);
+  padding-inline:var(--s-04);border-radius:var(--radius-sm);
+  font-size:var(--t-small);font-weight:500;letter-spacing:-.008em;
   text-decoration:none;color:var(--text-secondary);
-  border-bottom:2px solid transparent;
-  transition:color var(--dur-fast-02) var(--ease-standard),border-color var(--dur-fast-02) var(--ease-standard);
+  transition:color var(--dur-fast-02) var(--ease-standard),
+             background-color var(--dur-fast-02) var(--ease-standard);
 }
-.nav a:hover{color:var(--text-primary);border-bottom-color:var(--border-strong)}
-.nav a[aria-current="page"]{color:var(--signal);border-bottom-color:var(--signal)}
+.nav a:hover{color:var(--text-primary);background:var(--layer-01)}
+/* Der Strich faehrt aus der Mitte aus, statt hart zu erscheinen. */
+.nav a::after{
+  content:"";position:absolute;left:var(--s-04);right:var(--s-04);bottom:6px;height:2px;
+  background:var(--signal);border-radius:2px;transform:scaleX(0);
+  transition:transform var(--dur-mod-01) var(--ease-out);
+}
+.nav a[aria-current="page"]{color:var(--text-primary);font-weight:600}
+.nav a[aria-current="page"]::after{transform:scaleX(1)}
 @media (min-width:62rem){
   .header__top{padding-block:var(--s-03)}
   .nav{border-top:0}
@@ -157,100 +219,183 @@ section{padding-block:var(--section-y)}
 
 /* --- Schaltflaechen ------------------------------------------------------- */
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:var(--s-03);
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:var(--s-03);
   min-height:var(--tap-comfort);padding:var(--s-04) var(--s-07);
-  border:1px solid transparent;border-radius:var(--radius);
-  font:inherit;font-weight:600;text-decoration:none;cursor:pointer;
+  border:1px solid transparent;border-radius:var(--radius-sm);
+  font:inherit;font-weight:600;letter-spacing:-.01em;text-decoration:none;cursor:pointer;
   transition:background-color var(--dur-fast-02) var(--ease-standard),
              color var(--dur-fast-02) var(--ease-standard),
-             border-color var(--dur-fast-02) var(--ease-standard);
+             border-color var(--dur-fast-02) var(--ease-standard),
+             box-shadow var(--dur-mod-01) var(--ease-standard),
+             transform var(--dur-fast-02) var(--ease-standard);
 }
-.btn--primary{background:var(--signal);color:#fff}
-.btn--primary:hover{background:var(--signal-hover)}
-.btn--secondary{background:transparent;color:var(--text-primary);border-color:var(--text-primary)}
-.btn--secondary:hover{background:var(--text-primary);color:var(--background)}
-.on-dark .btn--secondary{color:var(--background);border-color:var(--background)}
-.on-dark .btn--secondary:hover{background:var(--background);color:var(--text-primary)}
-.btn-row{display:flex;flex-wrap:wrap;gap:var(--s-05)}
+.btn:active{transform:translateY(1px)}
+.btn--primary{background:var(--signal);color:#fff;box-shadow:var(--schatten-1)}
+.btn--primary:hover{background:var(--signal-hover);box-shadow:var(--schatten-2)}
+.btn--secondary{background:var(--background);color:var(--text-primary);border-color:var(--hairline-stark);box-shadow:var(--schatten-1)}
+.btn--secondary:hover{border-color:var(--text-primary);box-shadow:var(--schatten-2)}
+.on-dark .btn--secondary{background:transparent;color:var(--background);border-color:rgba(255,255,255,.35);box-shadow:none}
+.on-dark .btn--secondary:hover{background:var(--background);color:var(--text-primary);border-color:var(--background)}
+.btn-row{display:flex;flex-wrap:wrap;gap:var(--s-04)}
 
 /* --- Hero ----------------------------------------------------------------- */
-.hero{position:relative;border-bottom:1px solid var(--border-subtle)}
+.hero{position:relative;border-bottom:0;padding-bottom:var(--s-09)}
 /* width:100% ist Pflicht. Ohne sie leitet aspect-ratio die Breite aus der
    min-height ab (256px x 21/9 = 597px) und sprengt auf dem Telefon das Layout. */
 /* Auf Containerbreite begrenzt. Randlos gestreckt wuerde das Bildmaterial des
    Kunden (max. 1100 px) auf breiten Schirmen bis Faktor 2,6 hochskaliert. */
-.hero__bild{position:relative;width:100%;max-width:var(--page-max);margin-inline:auto;aspect-ratio:21/9;min-height:16rem;overflow:hidden;background:var(--layer-01)}
+.hero__bild{
+  position:relative;width:100%;max-width:calc(var(--page-max) - 2 * var(--gutter));
+  margin-inline:auto;aspect-ratio:21/9;min-height:16rem;overflow:hidden;
+  background:var(--layer-01);border-radius:var(--radius-lg);box-shadow:var(--schatten-2);
+}
 /* Keine Abdunklung: Der Hero-Text steht ueber dem Bild, nicht darauf.
    Eine Abdunklung wuerde das Foto nur stumpf machen, ohne etwas lesbarer zu machen. */
 .hero__bild img{width:100%;height:100%;object-fit:cover}
-.hero__text{padding-block:clamp(2.5rem,1.5rem + 4vw,5rem)}
+.hero__text{padding-block:clamp(3rem,2rem + 4.5vw,6rem)}
 .hero__text>*+*{margin-top:var(--s-06)}
-.hero__text .lead{max-width:var(--measure);color:var(--text-secondary)}
-.hero--klein h1{font-size:var(--t-h2);line-height:1.15}
+.hero__text h1{max-width:18ch}
+.hero__text .lead{max-width:var(--measure)}
+.hero--klein h1{font-size:var(--t-h2);line-height:1.08}
 
-/* --- Vorschaukacheln: Raster aus Haarlinien, keine Kaesten ---------------- */
+/* --- Kacheln -------------------------------------------------------------- */
+/* Aus dem Haarlinienraster der Carbon-Fassung werden freistehende Karten.
+   Die Klassennamen bleiben, damit der Generator unveraendert bleibt. */
 .grid-rule{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
-  gap:1px;background:var(--border-subtle);border:1px solid var(--border-subtle);
+  gap:var(--s-05);background:transparent;border:0;
 }
-.grid-rule>*{background:var(--background);padding:var(--s-07)}
+.grid-rule>*{
+  background:var(--background);padding:var(--s-07);
+  border:1px solid var(--hairline);border-radius:var(--radius);
+  box-shadow:var(--schatten-1);
+}
 .card>*+*{margin-top:var(--s-05)}
 .card__num{color:var(--signal)}
 
+/* Bento: nur das Leistungsraster der Startseite, nicht jedes Kartenraster. */
+@media (min-width:64rem){
+  .grid-bento{grid-template-columns:repeat(6,1fr);gap:var(--s-05)}
+  .grid-bento>*{grid-column:span 2}
+  .grid-bento>*:nth-child(1){grid-column:span 4}
+  .grid-bento>*:nth-child(4){grid-column:span 4}
+  .grid-bento>*:nth-child(8){grid-column:span 6}
+  /* Die beiden breiten Kacheln zeigen mehr Bild, die letzte legt sich quer. */
+  .grid-bento>*:nth-child(1) .teaser__bild,
+  .grid-bento>*:nth-child(4) .teaser__bild{aspect-ratio:21/9}
+  .grid-bento>*:nth-child(8){flex-direction:row;align-items:stretch}
+  .grid-bento>*:nth-child(8) .teaser__bild{flex:1 1 46%;aspect-ratio:auto;min-height:14rem}
+  .grid-bento>*:nth-child(8) .teaser__text{flex:1 1 54%;justify-content:center;padding:var(--s-09)}
+}
+
 /* Klickbare Vorschaukachel mit Bild */
-.teaser{display:flex;flex-direction:column;background:var(--background);text-decoration:none;padding:0}
+.teaser{
+  display:flex;flex-direction:column;overflow:hidden;
+  background:var(--background);text-decoration:none;padding:0;
+  transition:transform var(--dur-mod-01) var(--ease-out),
+             box-shadow var(--dur-mod-01) var(--ease-out),
+             border-color var(--dur-mod-01) var(--ease-standard);
+}
 .teaser__bild{aspect-ratio:3/2;overflow:hidden;background:var(--layer-01)}
-.teaser__bild img{width:100%;height:100%;object-fit:cover;transition:transform var(--dur-mod-02) var(--ease-standard)}
-.teaser:hover .teaser__bild img{transform:scale(1.03)}
+.teaser__bild img{width:100%;height:100%;object-fit:cover;
+  transition:transform var(--dur-slow) var(--ease-out)}
+.teaser:hover{transform:translateY(-3px);box-shadow:var(--schatten-3);border-color:var(--hairline-stark)}
+.teaser:hover .teaser__bild img{transform:scale(1.045)}
 .teaser__text{padding:var(--s-07);flex:1;display:flex;flex-direction:column;gap:var(--s-04)}
 .teaser__text h3{transition:color var(--dur-fast-02) var(--ease-standard)}
 .teaser:hover h3{color:var(--signal)}
-.teaser__mehr{margin-top:auto;font-weight:600;color:var(--signal);font-size:var(--t-small)}
-.teaser__mehr::after{content:" \2192"}
+/* Die Nummer wird zur kleinen Plakette, ohne Punkt davor. */
+.teaser .card__num{
+  align-self:flex-start;padding:var(--s-02) var(--s-04);
+  border:1px solid var(--hairline);border-radius:var(--radius-pill);
+  font-variant-numeric:tabular-nums;
+}
+.teaser .card__num::before{display:none}
+.teaser__mehr{
+  margin-top:auto;font-weight:600;color:var(--signal);font-size:var(--t-small);
+  display:inline-flex;align-items:center;gap:var(--s-03);
+}
+.teaser__mehr::after{
+  content:"\2192";display:inline-block;
+  transition:transform var(--dur-mod-01) var(--ease-out);
+}
+.teaser:hover .teaser__mehr::after{transform:translateX(5px)}
 
 /* --- Zusagen / Hinweisblock ----------------------------------------------- */
-.promise{border-left:3px solid var(--signal);background:var(--signal-wash);padding:var(--s-06)}
+.promise{
+  border:1px solid var(--hairline);border-left:3px solid var(--signal);
+  background:var(--signal-wash);padding:var(--s-07);border-radius:var(--radius);
+}
 .promise ul{margin:0;padding-left:var(--s-06)}
 .promise li+li{margin-top:var(--s-04)}
+.promise ::marker{color:var(--signal)}
 
 /* --- Ablauf --------------------------------------------------------------- */
 .steps{list-style:none;margin:0;padding:0;counter-reset:step}
-.steps>li{counter-increment:step;position:relative;padding-left:var(--s-09);padding-bottom:var(--s-08);border-left:1px solid var(--border-subtle)}
+.steps>li{
+  counter-increment:step;position:relative;
+  padding-left:var(--s-09);padding-bottom:var(--s-08);border-left:1px solid var(--hairline);
+}
 .steps>li:last-child{border-left-color:transparent;padding-bottom:0}
 .steps>li::before{
-  content:counter(step);position:absolute;left:0;top:0;transform:translateX(-50%);
-  width:2rem;height:2rem;display:grid;place-items:center;
-  background:var(--signal);color:#fff;font-size:var(--t-small);font-weight:600;line-height:1;
+  content:counter(step,decimal-leading-zero);position:absolute;left:0;top:-2px;
+  transform:translateX(-50%);
+  width:2.25rem;height:2.25rem;display:grid;place-items:center;
+  background:var(--background);color:var(--signal);border:1px solid var(--hairline);
+  border-radius:var(--radius-pill);box-shadow:var(--schatten-1);
+  font-size:var(--t-label);font-weight:600;line-height:1;font-variant-numeric:tabular-nums;
+  transition:background-color var(--dur-mod-01) var(--ease-standard),
+             color var(--dur-mod-01) var(--ease-standard);
 }
+.steps>li:hover::before{background:var(--signal);color:#fff;border-color:var(--signal)}
 .steps h3{margin-bottom:var(--s-04)}
 
 /* --- Galerie und Team ----------------------------------------------------- */
 .galerie{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:var(--s-06) var(--s-05)}
 .galerie figure{margin:0}
-.galerie img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:opacity var(--dur-mod-01) var(--ease-standard)}
-.galerie a{display:block;text-decoration:none}
-.galerie a:hover img{opacity:.88}
-.galerie figcaption{margin-top:var(--s-03);font-size:var(--t-small);color:var(--text-secondary)}
+.galerie a{display:block;text-decoration:none;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--schatten-1);
+  transition:box-shadow var(--dur-mod-01) var(--ease-out),transform var(--dur-mod-01) var(--ease-out)}
+.galerie a:hover{box-shadow:var(--schatten-3);transform:translateY(-2px)}
+.galerie img{aspect-ratio:4/3;object-fit:cover;width:100%;
+  transition:transform var(--dur-slow) var(--ease-out)}
+.galerie a:hover img{transform:scale(1.04)}
+.galerie figcaption{margin-top:var(--s-04);font-size:var(--t-small);color:var(--text-secondary)}
 .galerie-gruppe+.galerie-gruppe{margin-top:var(--s-10)}
-.galerie-gruppe>h3{margin-bottom:var(--s-06);padding-bottom:var(--s-04);border-bottom:1px solid var(--border-subtle)}
+.galerie-gruppe>h3{margin-bottom:var(--s-06);padding-bottom:var(--s-04);border-bottom:1px solid var(--hairline)}
 
 .team{display:grid;grid-template-columns:repeat(auto-fill,minmax(10rem,1fr));gap:var(--s-07) var(--s-05)}
 .team figure{margin:0}
-.team img{aspect-ratio:1/1;object-fit:cover;width:100%;filter:grayscale(1);transition:filter var(--dur-mod-02) var(--ease-standard)}
-.team figure:hover img{filter:grayscale(0)}
-.team figcaption{margin-top:var(--s-04)}
-.team .name{font-weight:600;display:block}
+.team img{aspect-ratio:1/1;object-fit:cover;width:100%;border-radius:var(--radius);
+  filter:grayscale(1);box-shadow:var(--schatten-1);
+  transition:filter var(--dur-slow) var(--ease-out),
+             transform var(--dur-mod-01) var(--ease-out),
+             box-shadow var(--dur-mod-01) var(--ease-out)}
+.team figure:hover img{filter:grayscale(0);transform:translateY(-3px);box-shadow:var(--schatten-2)}
+.team figcaption{margin-top:var(--s-05)}
+.team .name{font-weight:600;display:block;letter-spacing:-.01em}
 .team .rolle{font-size:var(--t-small);color:var(--text-secondary)}
 
-.bild-breit{margin-block:var(--s-09)}
-.bild-breit img{width:100%}
-.bild-breit figcaption{margin-top:var(--s-04);font-size:var(--t-small);color:var(--text-secondary);max-width:var(--measure)}
+.bild-breit{margin-block:var(--s-10)}
+.bild-breit img{width:100%;border-radius:var(--radius-lg);box-shadow:var(--schatten-2)}
+.bild-breit figcaption{margin-top:var(--s-05);font-size:var(--t-small);color:var(--text-secondary);max-width:var(--measure)}
 
 /* --- Zahlenreihe ---------------------------------------------------------- */
-.fakten{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:1px;background:var(--border-subtle);border:1px solid var(--border-subtle)}
-.fakten>div{background:var(--background);padding:var(--s-07)}
-.fakten .zahl{font-size:var(--t-h2);line-height:1.1;font-weight:400;color:var(--signal);display:block}
-.fakten .was{margin-top:var(--s-03);font-size:var(--t-small);color:var(--text-secondary)}
+.fakten{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));
+  gap:var(--s-05);background:transparent;border:0;
+}
+.fakten>div{
+  background:var(--background);padding:var(--s-07);
+  border:1px solid var(--hairline);border-radius:var(--radius);box-shadow:var(--schatten-1);
+  transition:box-shadow var(--dur-mod-01) var(--ease-out),transform var(--dur-mod-01) var(--ease-out);
+}
+.fakten>div:hover{box-shadow:var(--schatten-2);transform:translateY(-2px)}
+.fakten .zahl{
+  font-size:var(--t-h2);line-height:1;font-weight:600;letter-spacing:-.03em;
+  color:var(--signal);display:block;font-variant-numeric:tabular-nums;
+}
+.fakten .was{margin-top:var(--s-04);font-size:var(--t-small);color:var(--text-secondary)}
 
 /* --- Kontakt -------------------------------------------------------------- */
 .on-dark{background:var(--background-inverse);color:var(--background)}
@@ -262,17 +407,22 @@ section{padding-block:var(--section-y)}
 
 /* Felder stehen auf Weiss, nie auf Grau: border-strong erreicht auf layer-01
    nur 3,02:1 — Grenzwert ohne Reserve. Siehe DESIGN.md 2.3. */
-.form-panel{background:var(--background);color:var(--text-primary);padding:var(--s-08)}
+.form-panel{
+  background:var(--background);color:var(--text-primary);padding:var(--s-08);
+  border-radius:var(--radius-lg);box-shadow:var(--schatten-3);
+}
 .field+.field{margin-top:var(--s-06)}
-.field label{display:block;margin-bottom:var(--s-03)}
+.field label{display:block;margin-bottom:var(--s-03);font-weight:500}
 .field input,.field select,.field textarea{
-  width:100%;min-height:var(--tap-comfort);padding:var(--s-04);
+  width:100%;min-height:var(--tap-comfort);padding:var(--s-04) var(--s-05);
   font:inherit;color:var(--text-primary);background:var(--background);
-  border:1px solid var(--border-strong);border-radius:var(--radius);
-  transition:border-color var(--dur-fast-02) var(--ease-standard);
+  border:1px solid var(--border-strong);border-radius:var(--radius-sm);
+  transition:border-color var(--dur-fast-02) var(--ease-standard),
+             box-shadow var(--dur-fast-02) var(--ease-standard);
 }
 .field textarea{min-height:9rem;resize:vertical;line-height:1.6}
 .field input:hover,.field select:hover,.field textarea:hover{border-color:var(--text-primary)}
+.field input:focus,.field select:focus,.field textarea:focus{box-shadow:0 0 0 4px var(--signal-wash)}
 .field .hint{display:block;margin-top:var(--s-03);color:var(--text-helper);font-size:var(--t-small)}
 .field .err{display:none;margin-top:var(--s-03);color:var(--support-error);font-size:var(--t-small);font-weight:600}
 .field[data-invalid="true"] input,.field[data-invalid="true"] select,.field[data-invalid="true"] textarea{border-color:var(--support-error);border-width:2px}
@@ -280,53 +430,90 @@ section{padding-block:var(--section-y)}
 .req{color:var(--support-error)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
-.status{margin-top:var(--s-06);padding:var(--s-06);border-left:3px solid var(--border-strong)}
+.status{margin-top:var(--s-06);padding:var(--s-06);border:1px solid var(--hairline);
+  border-left:3px solid var(--border-strong);border-radius:var(--radius-sm)}
 .status[hidden]{display:none}
 .status--ok{border-left-color:var(--support-success);background:var(--layer-01)}
 .status--ok h3{color:var(--support-success)}
 .status--warn{border-left-color:var(--signal);background:var(--signal-wash)}
 .status>*+*{margin-top:var(--s-05)}
-.status textarea{width:100%;min-height:10rem;font:inherit;font-size:var(--t-small);padding:var(--s-04);border:1px solid var(--border-strong);border-radius:var(--radius);background:var(--background);line-height:1.6}
-.anfahrt{border:1px solid var(--border-subtle);padding:var(--s-07);margin-top:var(--s-07)}
+.status textarea{width:100%;min-height:10rem;font:inherit;font-size:var(--t-small);padding:var(--s-04);border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--background);line-height:1.6}
+.anfahrt{border:1px solid var(--hairline);border-radius:var(--radius);padding:var(--s-07);margin-top:var(--s-07);
+  background:var(--background);box-shadow:var(--schatten-1)}
 .anfahrt>*+*{margin-top:var(--s-05)}
 
-.noscript{background:var(--signal-wash);border-left:3px solid var(--signal);padding:var(--s-06);margin-bottom:var(--s-07)}
+.noscript{background:var(--signal-wash);border:1px solid var(--hairline);border-left:3px solid var(--signal);
+  border-radius:var(--radius-sm);padding:var(--s-06);margin-bottom:var(--s-07)}
 
 /* --- FAQ: details/summary, ohne JavaScript -------------------------------- */
-.faq{border-top:1px solid var(--border-subtle)}
-.faq details{border-bottom:1px solid var(--border-subtle)}
+.faq{border-top:0;display:grid;gap:var(--s-04)}
+.faq details{
+  border:1px solid var(--hairline);border-radius:var(--radius);
+  background:var(--background);box-shadow:var(--schatten-1);
+  padding-inline:var(--s-06);
+  transition:box-shadow var(--dur-mod-01) var(--ease-out),border-color var(--dur-mod-01) var(--ease-standard);
+}
+.faq details:hover{box-shadow:var(--schatten-2)}
+.faq details[open]{border-color:var(--hairline-stark);box-shadow:var(--schatten-2)}
 .faq summary{
   display:flex;align-items:center;justify-content:space-between;gap:var(--s-06);
   min-height:var(--tap-comfort);padding-block:var(--s-05);
-  font-size:var(--t-h3);font-weight:600;line-height:1.35;cursor:pointer;list-style:none;
+  font-size:var(--t-h3);font-weight:600;line-height:1.3;cursor:pointer;list-style:none;
   transition:color var(--dur-fast-02) var(--ease-standard);
 }
 .faq summary::-webkit-details-marker{display:none}
 .faq summary:hover{color:var(--signal)}
-.faq summary::after{content:"+";flex:0 0 auto;font-size:1.5rem;font-weight:400;line-height:1;color:var(--signal)}
-.faq details[open] summary::after{content:"\2013"}
+/* Das Plus wird zum Minus, indem der senkrechte Strich auf Null zusammenfaehrt.
+   background-size ist animierbar, deshalb laeuft das weich — ohne das Zeichen
+   zu tauschen und ohne zusaetzliches Markup. */
+.faq summary::after{
+  content:"";flex:0 0 auto;width:1rem;height:1rem;
+  background-image:
+    linear-gradient(var(--signal),var(--signal)),
+    linear-gradient(var(--signal),var(--signal));
+  background-repeat:no-repeat;
+  background-position:center,center;
+  background-size:100% 2px, 2px 100%;
+  transition:background-size var(--dur-mod-02) var(--ease-out);
+}
+.faq details[open] summary::after{background-size:100% 2px, 2px 0}
 .faq .answer{padding-bottom:var(--s-06);max-width:var(--measure)}
 .faq .answer>*+*{margin-top:var(--s-05)}
+.faq details[open] .answer{animation:aufklappen var(--dur-mod-02) var(--ease-out)}
+@keyframes aufklappen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 
 /* --- Brotkrumen ----------------------------------------------------------- */
-.krumen{padding-block:var(--s-05);border-bottom:1px solid var(--border-subtle)}
+.krumen{padding-block:var(--s-05);border-bottom:1px solid var(--hairline)}
 .krumen ol{display:flex;flex-wrap:wrap;gap:var(--s-03);list-style:none;margin:0;padding:0;font-size:var(--t-small);color:var(--text-secondary)}
-.krumen li+li::before{content:"/";margin-right:var(--s-03);color:var(--border-strong)}
+.krumen li+li::before{content:"/";margin-right:var(--s-03);color:var(--border-subtle)}
 
 /* --- Weiter-zu-Band ------------------------------------------------------- */
-.weiter{border-top:1px solid var(--border-subtle);padding-block:var(--s-09)}
+.weiter{border-top:1px solid var(--hairline);padding-block:var(--s-10)}
 .weiter ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:var(--s-05);list-style:none;margin:var(--s-06) 0 0;padding:0}
-.weiter a{display:block;padding:var(--s-05);border:1px solid var(--border-subtle);text-decoration:none;font-weight:600;transition:border-color var(--dur-fast-02) var(--ease-standard),color var(--dur-fast-02) var(--ease-standard)}
-.weiter a:hover{border-color:var(--signal);color:var(--signal)}
+.weiter a{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s-05);
+  padding:var(--s-06);border:1px solid var(--hairline);border-radius:var(--radius);
+  background:var(--background);box-shadow:var(--schatten-1);
+  text-decoration:none;font-weight:600;letter-spacing:-.01em;
+  transition:border-color var(--dur-mod-01) var(--ease-standard),
+             color var(--dur-fast-02) var(--ease-standard),
+             box-shadow var(--dur-mod-01) var(--ease-out),
+             transform var(--dur-mod-01) var(--ease-out);
+}
+.weiter a::after{content:"\2192";color:var(--signal);transition:transform var(--dur-mod-01) var(--ease-out)}
+.weiter a:hover{border-color:var(--hairline-stark);color:var(--signal);box-shadow:var(--schatten-2);transform:translateY(-2px)}
+.weiter a:hover::after{transform:translateX(4px)}
 
 /* --- Fusszeile ------------------------------------------------------------ */
-.footer{border-top:1px solid var(--border-subtle);padding-block:var(--s-09)}
+.footer{border-top:1px solid var(--hairline);padding-block:var(--s-10);background:var(--layer-01)}
 .footer__grid{display:grid;gap:var(--s-07);grid-template-columns:1fr}
 @media (min-width:48rem){.footer__grid{grid-template-columns:2fr 1fr 1fr 1fr}}
 .footer nav ul{list-style:none;margin:0;padding:0}
-.footer nav a{display:inline-flex;align-items:center;min-height:var(--tap-min)}
+.footer nav a{display:inline-flex;align-items:center;min-height:var(--tap-min);text-decoration:none}
+.footer nav a:hover{color:var(--signal)}
 .footer address a{display:inline-flex;align-items:center;min-height:var(--tap-min)}
-.footer__legal{margin-top:var(--s-09);padding-top:var(--s-06);border-top:1px solid var(--border-subtle);color:var(--text-secondary)}
+.footer .label{background:transparent;border-color:var(--hairline);margin-bottom:var(--s-03)}
+.footer__legal{margin-top:var(--s-09);padding-top:var(--s-06);border-top:1px solid var(--hairline);color:var(--text-secondary)}
 
 /* --- Rechtstexte ---------------------------------------------------------- */
 .recht{max-width:var(--measure)}
@@ -339,10 +526,39 @@ section{padding-block:var(--section-y)}
 .recht dt{font-weight:600;margin-top:var(--s-05)}
 .recht dd{margin:var(--s-02) 0 0}
 
+/* --- Fehlerseite ----------------------------------------------------------- */
+.fehler{min-height:52vh;display:grid;align-content:center}
+.fehler .nr{font-size:var(--t-display);line-height:1;color:var(--signal);font-weight:600;letter-spacing:-.03em}
+.fehler ul{list-style:none;margin:var(--s-07) 0 0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:var(--s-05)}
+.fehler ul a{display:flex;align-items:center;justify-content:space-between;gap:var(--s-05);
+  padding:var(--s-06);border:1px solid var(--hairline);border-radius:var(--radius);
+  background:var(--background);box-shadow:var(--schatten-1);
+  text-decoration:none;font-weight:600;
+  transition:border-color var(--dur-mod-01) var(--ease-standard),color var(--dur-fast-02) var(--ease-standard),
+             box-shadow var(--dur-mod-01) var(--ease-out),transform var(--dur-mod-01) var(--ease-out)}
+.fehler ul a::after{content:"\2192";color:var(--signal);transition:transform var(--dur-mod-01) var(--ease-out)}
+.fehler ul a:hover{border-color:var(--hairline-stark);color:var(--signal);box-shadow:var(--schatten-2);transform:translateY(-2px)}
+.fehler ul a:hover::after{transform:translateX(4px)}
+
+/* --- Bewegung beim Scrollen ------------------------------------------------
+   Greift NUR, wenn das Skript gelaufen ist und der Besucher keine reduzierte
+   Bewegung verlangt: html[data-motion="an"] wird erst dann gesetzt. Ohne
+   JavaScript steht alles sofort sichtbar da — nichts haengt an einem
+   Beobachter fest. Das Skript hat zusaetzlich eine Notbremse nach 2 s. */
+html[data-motion="an"] .wird-sichtbar{
+  opacity:0;transform:translateY(16px);
+  transition:opacity var(--dur-slow) var(--ease-out),transform var(--dur-slow) var(--ease-out);
+  transition-delay:var(--verzug,0ms);
+  will-change:opacity,transform;
+}
+html[data-motion="an"] .wird-sichtbar.ist-da{opacity:1;transform:none;will-change:auto}
+
 /* --- Bewegung zurueckgenommen --------------------------------------------- */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html[data-motion="an"] .wird-sichtbar{opacity:1;transform:none}
 }
 
 /* --- Druck ---------------------------------------------------------------- */
@@ -350,16 +566,7 @@ section{padding-block:var(--section-y)}
   .header,.skip,.nav,form,.btn,.weiter{display:none}
   body{color:#000;font-size:11pt}
   .on-dark{background:#fff;color:#000}
+  .teaser,.fakten>div,.faq details,.weiter a,.form-panel,.anfahrt{box-shadow:none;border:1px solid #999}
+  html[data-motion="an"] .wird-sichtbar{opacity:1 !important;transform:none !important}
   a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt}
 }
-
-
-/* --- Fehlerseite ----------------------------------------------------------- */
-.fehler{min-height:52vh;display:grid;align-content:center}
-.fehler .nr{font-size:var(--t-display);line-height:1;color:var(--signal);font-weight:400}
-.fehler ul{list-style:none;margin:var(--s-07) 0 0;padding:0;display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:var(--s-05)}
-.fehler ul a{display:block;padding:var(--s-05);border:1px solid var(--border-subtle);
-  text-decoration:none;font-weight:600;
-  transition:border-color var(--dur-fast-02) var(--ease-standard),color var(--dur-fast-02) var(--ease-standard)}
-.fehler ul a:hover{border-color:var(--signal);color:var(--signal)}
