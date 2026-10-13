@@ -275,15 +275,36 @@ def baue_jsonld(pfad, titel, krumenpfad=None):
                    "</script>\n" for b in bloecke)
 
 
+def start_verweis(tiefe=0):
+    """Verweis auf die Startseite — bewusst "./" bzw. "../" statt "index.html".
+
+    Vercel laeuft mit cleanUrls und leitet jedes index.html auf die Adresse
+    OHNE Schraegstrich um:
+        /referenzen/mat-elektrotechnik/index.html
+        -> 308 -> /referenzen/mat-elektrotechnik
+    Dort liegt der Basispfad des Browsers eine Ebene zu hoch. Saemtliche
+    relativen Verweise der Seite suchen dann unter /referenzen/ statt unter
+    /referenzen/mat-elektrotechnik/ — stil.css, bilder/, fonts/ geben 404 und
+    die Seite erscheint voellig ungestaltet. Genau das passierte, sobald man
+    von einer Unterseite aus auf "Start" klickte.
+
+    Mit "./" endet die Adresse auf einem Schraegstrich und der Basispfad
+    stimmt. Auf GitHub Pages unter /MAT-/ gilt dasselbe.
+    """
+    return "../" * tiefe if tiefe else "./"
+
+
 def kopf(seite, titel, beschreibung, pfad, tiefe=0, og_bild="og-start.jpg", krumenpfad=None):
     P = "../" * tiefe
+    START = start_verweis(tiefe)
     jsonld = baue_jsonld(pfad, titel, krumenpfad)
     # Startseite kanonisch ohne Dateinamen
     url = SITE + "/" if pfad == "index.html" else SITE + "/" + pfad
     zeilen = []
     for k, ziel, text in NAV:
         aktuell = ' aria-current="page"' if k == seite else ""
-        zeilen.append(f'        <li><a href="{P}{ziel}"{aktuell}>{text}</a></li>')
+        link = start_verweis(tiefe) if ziel == "index.html" else P + ziel
+        zeilen.append(f'        <li><a href="{link}"{aktuell}>{text}</a></li>')
     nav = "\n".join(zeilen)
     return f"""<!DOCTYPE html>
 <html lang="de">
@@ -319,7 +340,7 @@ def kopf(seite, titel, beschreibung, pfad, tiefe=0, og_bild="og-start.jpg", krum
 <header class="header">
   <div class="wrap header__inner">
     <div class="header__top">
-      <a class="logo" href="{P}index.html" aria-label="Mat-Elektrotechnik, zur Startseite">
+      <a class="logo" href="{START}" aria-label="Mat-Elektrotechnik, zur Startseite">
         <img src="{P}bilder/logo-mat.svg" alt="Mat-Elektrotechnik" width="118" height="34">
       </a>
       <a class="header__tel" href="tel:{TEL_ROH}">{TEL}</a>
@@ -341,7 +362,8 @@ def krumen(items, tiefe=0):
     teile = []
     for i, (text, ziel) in enumerate(items):
         if ziel and i < len(items) - 1:
-            teile.append(f'<li><a href="{P}{ziel}">{text}</a></li>')
+            link = start_verweis(tiefe) if ziel == "index.html" else P + ziel
+            teile.append(f'<li><a href="{link}">{text}</a></li>')
         else:
             teile.append(f'<li aria-current="page">{text}</li>')
     return ('<nav class="krumen" aria-label="Sie sind hier"><div class="wrap"><ol>'
@@ -1545,7 +1567,7 @@ def seite_404():
     s = kopf("", "Seite nicht gefunden — Mat-Elektrotechnik GmbH",
              "Diese Seite gibt es nicht. Hier geht es zurück zur Startseite.",
              "404.html", 0)
-    s = s.replace('href="index.html"', 'href="/index.html"')
+    s = s.replace('href="./"', 'href="/"')
     s = s.replace('href="leistungen.html"', 'href="/leistungen.html"')
     s = s.replace('href="unternehmen.html"', 'href="/unternehmen.html"')
     s = s.replace('href="referenzen.html"', 'href="/referenzen.html"')
@@ -1564,14 +1586,14 @@ def seite_404():
       die Adresse geschlichen, oder die Seite ist umgezogen. Wenn Sie etwas Bestimmtes
       suchen, rufen Sie uns einfach an — das geht meistens schneller.</p>
     <ul>
-      <li><a href="/index.html">Zur Startseite</a></li>
+      <li><a href="/">Zur Startseite</a></li>
       <li><a href="/leistungen.html">Alle Leistungen</a></li>
       <li><a href="/kontakt.html">Kontakt</a></li>
       <li><a href="tel:""" + TEL_ROH + """">""" + TEL + """</a></li>
     </ul>
   </div>
 </section>
-""" + fuss(0).replace('href="index.html"','href="/index.html"') \
+""" + fuss(0).replace('href="./"','href="/"') \
               .replace('href="leistungen','href="/leistungen') \
               .replace('href="unternehmen.html"','href="/unternehmen.html"') \
               .replace('href="referenzen.html"','href="/referenzen.html"') \
